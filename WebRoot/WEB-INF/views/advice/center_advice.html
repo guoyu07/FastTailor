@@ -1,0 +1,120 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>您的意见</title>
+  <meta name="description" content="这是一个 user 页面">
+  <meta name="keywords" content="user">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="${ctxPath}/assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="${ctxPath}/assets/i/app-icon72x72@2x.png">
+  <link rel="stylesheet" href="${base}/template/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="${base}/template/assets/css/amazeui.flat.min.css">
+  <link rel="stylesheet" href="${base}/template/assets/css/apps.css">
+    <script src="${base}/template/assets/js/jquery.min.js"></script>
+  <script src="${base}/assets/js/amazeui.min.js"></script>
+</head>
+<script>
+function save(){
+var name = $('#name').val();
+var em = $('#email').val();
+var tt =  $('#context').val();
+if(name==""){
+alert("姓名不能为空哦！");
+}else if(em==""){
+alert("联系电话不能为空哦！");
+}
+else if(tt==""){
+	alert("留言内容不能为空哦！");
+}else {
+		var formData = jQuery("#msg").serializeArray();
+		$.ajax({
+				url: '${ctxPath}/advice/saveAdvice',
+				data: formData,
+				dataType: "json",	
+				async: false,	
+				success: function(data) {
+				if (data.status == "success") {
+					alert(data.message);
+				}
+				}
+			});	
+}
+		
+}
+
+</script>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+<div class="am-cf admin-main">
+ 
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">您的建议</strong> / <small>Suggestion</small></div>
+    </div>
+
+    <hr/>
+    
+<div class="jd-container jd-inner-page">
+    <div class="am-article-hd">
+      <div class="am-g">
+        <div class="am-u-lg-6 am-u-md-4 am-u-sm-12">
+          <form id="msg" class="am-form"  method="POST" enctype="multipart/form-data">
+            <fieldset>
+            <label for="name" class="about-color">您的姓名</label>
+            <input id="name" name="Advice.name" type="text" required/>
+            <br/>
+            <label for="email" class="about-color">您的电话</label>
+            <input id="email" name="Advice.email" type="number" required/>
+            <br/>
+            <label for="message" class="about-color">您的留言</label>
+            <textarea id="context" name="Advice.context" required></textarea>
+            <br/>
+            <button type="submit" onclick="save()" class="am-btn am-btn-primary am-btn-sm"><i class="am-icon-check"></i> 提 交</button>
+            </fieldset>
+          </form>
+          <hr class="am-article-divider am-show-sm-only">
+        </div>
+    </div>
+   
+    
+</div>
+      
+       	
+       	
+       	</div>
+   
+       
+          
+             
+       
+  </div>
+  <!-- content end -->
+
+
+
+<footer>
+  <hr>
+  <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+</footer>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="${ctxPath}/assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+
+<script src="${ctxPath}/assets/js/amazeui.min.js"></script>
+
+<script src="${ctxPath}/assets/js/app.js"></script>
+</body>
+</html>

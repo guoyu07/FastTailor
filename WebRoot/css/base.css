@@ -1,0 +1,567 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+/** 清除内外边距 **/
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */ dl, dt, dd, ul, ol, li, /* list elements 列表元素 */ pre, /* text formatting elements 文本格式元素 */ form, fieldset, legend, button, input, textarea, /* form elements 表单元素 */ th, td /* table elements 表格元素 */ {
+
+	margin: 0;
+
+	padding: 0;
+
+}
+
+/** 设置默认字体 **/
+
+* {
+
+	margin: 0;
+
+	padding: 0;
+
+	outline: none;
+
+}
+
+body, button, input, select, textarea /* for ie */ {
+
+	font: 100% Microsoft Yahei, 微软雅黑, Tahoma, Verdana, Arial, Helvetica, sans-serif;
+
+}
+
+img {
+
+	border: none;
+
+}
+
+body {
+
+	font-size: 12px;
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+
+	font-weight: normal;
+
+	font-size: 100%;
+
+}
+
+address, cite, dfn, em, var {
+
+	font-style: normal;
+
+} /* 将斜体扶正 */
+
+code, kbd, pre, samp {
+
+	font-family: courier new, courier, monospace;
+
+} /* 统一等宽字体 */
+
+small {
+
+	font-size: 10px;
+
+} /* 小于 12px 的中文很难阅读，让 small 正常化 */
+
+/** 重置列表元素 **/
+
+ul, ol {
+
+	list-style: none outside none;
+
+	margin: 0;
+
+	padding: 0;
+
+}
+
+button, input {
+
+	line-height: normal;
+
+}
+
+button, input, select, textarea {
+
+	font-size: 100%;
+
+	margin: 0;
+
+	outline: 0 none;
+
+	vertical-align: baseline;
+
+}
+
+i, em, cite, u {
+
+	font-style: normal;
+
+}
+
+/** 重置文本格式元素 **/
+
+a {
+
+	text-decoration: none;
+
+}
+
+a:hover {
+
+	text-decoration: none;
+
+}
+
+sup {
+
+	vertical-align: text-top;
+
+} /* 重置，减少对行高的影响 */
+
+sub {
+
+	vertical-align: text-bottom;
+
+}
+
+/** 重置表单元素 **/
+
+legend {
+
+	color: #000;
+
+} /* for ie6 */
+
+fieldset, img {
+
+	border: 0;
+
+} /* img 搭车：让链接里的 img 无边框 */
+
+button, input, select, textarea {
+
+	font-size: 100%;
+
+} /* 使得表单元素在 ie 下能继承字体大小 */
+
+textarea {
+
+	resize: none;
+
+}
+
+/* 注：optgroup 无法扶正 */
+
+
+
+/** 重置表格元素 **/
+
+table {
+
+	border-collapse: collapse;
+
+	border-spacing: 0;
+
+}
+
+/* 重置 HTML5 元素 */
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+
+	display: block;
+
+	margin: 0;
+
+	padding: 0;
+
+}
+
+.clearfix {
+
+	zoom: 1;
+
+}
+
+.mark {
+
+	background: #ff0;
+
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+
+	display: block;
+
+}
+
+blockquote, q {
+
+	quotes: none;
+
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+
+	content: '';
+
+	content: none;
+
+}
+
+/* 常用的通用样式 Common Style */
+
+
+
+/* 隐藏 */
+
+.hide {
+
+	display: none;
+
+}
+
+.show {
+
+	display: block !important;
+
+}
+
+/* 清除浮动 */
+
+.clear:after {
+
+	content: '\20';
+
+	display: block;
+
+	height: 0;
+
+	clear: both;
+
+}
+
+.clear {
+
+*zoom: 1;
+
+	float: none!important;
+
+	clear: both;
+
+}
+
+/* inline block */
+
+.inline-block {
+
+	display: inline-block;
+
+*display: inline;
+
+}
+
+.fl {
+
+	float: left;
+
+	display: inline;
+
+}
+
+.fr {
+
+	float: right;
+
+	display: inline;
+
+}
+
+/* Clearfix */
+
+.clearfix:after {
+
+	content: ".";
+
+	display: block;
+
+	height: 0;
+
+	clear: both;
+
+	visibility: hidden;
+
+}
+
+*html .clearfix {
+
+	height: 1%;
+
+}
+
+*+html .clearfix {
+
+	height: 1%;
+
+}
+
+.c1 {
+
+	padding: 50px 20px 20px;
+
+	margin-top: -45px;
+
+	display: block;
+
+	background: rgb(242, 242, 242);
+
+	transition: all 0.8s linear;
+
+    -moz-transition: all 0.8s linear;
+
+    -ms-transition: all 0.8s linear;
+
+    -o-transition: all 0.8s linear;
+
+    -webkit-transition: all 0.8s linear;
+
+}
+
+.c1:hover{
+
+	background:#FF9933;
+
+}
+
+.c1 a{
+
+	text-decoration:none;
+
+}
+
+.c1 h3 {
+
+	COLOR: #464646;
+
+	max-height: 30px;
+
+	text-align: center;
+
+	font-size: 16px;
+
+	font-family: 微软雅黑;
+
+	font-weight: bold;
+	
+	overflow:hidden;
+	
+	margin-bottom:10px;
+}
+
+.c1:hover a,.c1:hover h3{    /*当div被触发后控制其下面的元素属性变化*/
+
+	color:#fff;
+
+}
+
+
+.c1 span>a:hover{
+
+	border-radius:5px; 
+
+}
+
+.c1 p{
+
+	text-align:center; line-height: 22px;height:88px;overflow:hidden;
+
+}
+
+.c1 span{
+
+	display:block;
+
+	font-size:14px;
+
+}
+
+.c1 span>a{
+
+	color:#7C7C7C;
+
+	text-decoration:none;
+
+}
+
+.c2{
+
+	padding-left:37px;
+
+	padding-top:13px;
+
+}
+
+.c2 a{
+
+	text-decoration: none;
+
+	color: rgb(255, 255, 255);
+
+    box-shadow: rgb(182, 182, 182) 1px 1px 5px;
+
+	border-radius: 3px; padding: 6px 8px; 
+
+	font-size: 12px; 
+
+	background: rgb(255, 153, 51);
+
+}
+
+.c1:hover .c2>a{
+
+	color:#FF9933;
+
+	background-color:#fff;
+
+}
+
+.c1 .c2 a:hover{
+
+	background-color:#58D9EC;
+
+	color:#fff;
+
+}
+
+.li_icons{
+
+	width: 180px;
+
+	display: inline;
+
+	margin-bottom: 25px; 
+
+	float: left;
+
+    margin-right: 20px;
+
+}
+
+.icon {
+
+	position:relative;
+
+	margin: 0px auto;
+
+	width: 69px;
+
+	display: table;
+
+	height: 69px;
+
+	background-position: 0px -75px;
+
+}
+
+.icon1,.icon2,.icon3,.icon4,.icon5,.icon6{
+
+	
+
+     display:block;
+
+	 float:left;width:69px;height:69px;background-repeat:no-repeat;
+
+     background-image:url("../images/1.png");  
+
+	 transition: all 0.8s linear;
+
+    -moz-transition: all 0.8s linear;
+
+    -ms-transition: all 0.8s linear;
+
+    -o-transition: all 0.8s linear;
+
+    -webkit-transition: all 0.8s linear;
+
+}
+
+.icon .icon1 {
+
+    background-position: -27px -3px;
+
+}
+
+.icon .icon2 {
+
+    background-position: -149px -3px;
+
+}
+
+.icon .icon3 {
+
+    background-position: -269px -3px;
+
+}
+
+.icon .icon4 {
+
+    background-position: -27px -155px;
+
+}
+
+.icon .icon5 {
+
+    background-position: -149px -155px;
+
+}
+
+
+
+.icon .icon6 {
+
+    background-position: -269px -155px;
+
+}
+
+.li_icons:hover .icon1{
+
+	background-position: -27px -79px;
+
+}
+
+.li_icons:hover .icon2{
+
+    background-position: -149px -79px;
+
+}
+
+.li_icons:hover .icon3{
+
+    background-position: -269px -79px;
+
+}
+
+.li_icons:hover .icon4{
+
+    background-position: -27px -232px;
+
+}
+
+.li_icons:hover .icon5{
+
+    background-position: -149px -232px;
+
+}
+
+.li_icons:hover .icon6{
+
+	background-position: -269px -232px;
+
+}
+
+

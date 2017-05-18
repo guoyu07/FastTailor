@@ -1,0 +1,96 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>一键搜单 - Powered By ${systemConfig.systemName}</title>
+
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+  <link rel="icon" type="image/png" href="${base}/template/assets/i/favicon.png">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="${base}/template/assets/i/app-icon72x72@2x.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="${base}/template/assets/i/app-icon72x72@2x.png">
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="${base}/template/assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="${base}/template/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="${base}/template/assets/css/app.css">
+
+<link href="${base}/img/ui/styles/base.css" rel="stylesheet">
+<link rel="stylesheet" href="${base}/img/ui/styles/lightSlider.css" />
+<link rel="stylesheet" href="${base}/img/ui/styles/prettify.css" />
+<link rel="stylesheet" href="${base}/css/demo.css" />
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>  
+<script src="${base}/assets/js/amazeui.min.js"></script> 
+<script src="${base}/js/pubuliu/masonry.pkgd.min.js"></script>
+ <script src="${base}/js/pubuliu/handlebars-v4.0.5.js"></script>
+
+
+</head>
+
+<body>
+<!--在这里编写你的代码-->
+<div >
+
+  <div class="am-cf am-padding">
+     <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">一键搜单</strong> </div>
+  </div>
+  <hr style="am-padding-bottom:2px;margin:0px;"/>
+<div id="js-container" >
+
+</div>
+
+<div id="load-more"><button class="am-btn am-btn-primary">搜索更多</button></div>
+<script type="text/x-handlebars-template" id="tpl-list">
+  {{#each LIST}}
+  <div class="msry-item">
+    <section class="am-panel am-panel-primary">
+      <header class="am-panel-hd"> 
+        <h3 class="am-panel-title">  <i class="am-header-icon am-icon-tags"></i>  {{createDate}}</h3>
+      </header>
+      <div class="am-panel-bd">
+      服装种类:{{c_type}} <br/>
+       服装品类: {{c_category}}<br/>
+        布料类型:{{c_isbeoffer}}<br/>
+        加工数量:<p class="am-text-danger "><small class="am-text-warnning">[ S:{{s}}件  M:{{m}}件  L:{{l}}件  XL:{{xl}}件 ]</small></p><br/>
+        <a href="${base}/items/view?items.id={{id}}" target="mainFrame">查看详情 &rarrlp;</a>
+		<img src=""></img>
+      </div>
+    </section>
+  </div>
+  {{/each}}
+</script>
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+	
+  
+</div>
+</body>
+</html>

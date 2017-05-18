@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>REGISTER-注册</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link href="${ctxPath}/ui/css/register.css" rel="stylesheet" rev="stylesheet" type="text/css" media="all" />
+  
+  <link rel="alternate icon" type="image/png" href="${ctxPath}/assets/i/favicon.png">
+
+
+  <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.4.2/css/amazeui.min.css">
+  <link rel="stylesheet" href="css/style.css"></head>
+  	<script type="text/javascript" src="${ctxPath}/ui/js/jquery.min.js"></script>
+  <style>
+ 
+    .header {
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 200%;
+      color: #333;
+      margin-top: 30px;
+    }
+    .header p {
+      font-size: 14px;
+    }
+  </style>
+  <script type="text/javascript">
+$(document).ready(function(){
+	var $tab_li = $('#tab ul li');
+	$tab_li.hover(function(){
+		$(this).addClass('selected').siblings().removeClass('selected');
+		var index = $tab_li.index(this);
+		$('div.tab_box > div').eq(index).show().siblings().hide();
+	});	
+});
+</script>
+</head>
+
+
+<body>
+ <header class="am-topbar  am-topbar-fixed-top " id="header">
+    <div class="am-container">
+        <h1 class="am-topbar-brand">
+           		<a href="#"><img src="${ctxPath}/img/logo.gif"></img></a>
+            </h1>
+
+      <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-secondary am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}">
+        <span class="am-sr-only">导航切换</span>
+        <span class="am-icon-bars"></span>
+      </button>
+
+      <div class="am-collapse am-topbar-collapse am-topbar-right" id="doc-topbar-collapse">
+        <ul class="am-nav am-nav-pills am-topbar-nav">
+          <li class="am-active">
+            <a href="#">注册</a>
+          </li>
+          <li>
+            <a href="${ctxPath}/login/login">登录</a>
+          </li>
+          <li>
+            <a href="http://www.yunshipei.com/about/contacts.html" target="_blank">联系我们</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+<div class="header">
+ <hr />
+    <div class="am-g">
+        <h1>加入我们</h1>
+        <p>
+            <img src="${ctxPath}/img/landing.png" alt=""/>
+        </p>
+    </div>
+   
+</div>
+
+
+    <hr>
+<div id="tab">
+  <ul class="tab_menu">
+    <li class="selected">设计师注册</li>
+    <li>厂方注册</li>
+  
+  </ul>
+ 
+  	<div class="tab_box"> 
+    <div class="show">
+	   <form id="normal_form"  action="${ctxPath}/login/registerNow" class="am-form am-form-horizontal">
+	   <input type="hidden" name="admin.role" value="1" />
+		  <div class="am-form-group">
+		    <label for="doc-ipt-3" class="am-u-sm-2 am-form-label">Email/用户名</label>
+		    <div class="am-u-sm-10">
+		      <input type="text" name="admin.u_username" id="username" maxlength="12" minlength="6" required placeholder="输入你的Email/用户名">
+		    </div>
+		  </div>
+		
+		  <div class="am-form-group">
+		    <label for="doc-ipt-pwd-2" class="am-u-sm-2 am-form-label">密码</label>
+		    <div class="am-u-sm-10">
+		      <input type="password" name="admin.u_pwd" id="pwd" minlength="6" required placeholder="设置一个密码吧">
+		    </div>
+		  </div>
+		
+		 <div class="am-form-group">
+		    <label for="doc-ipt-pwd-2" class="am-u-sm-2 am-form-label">确认密码</label>
+		    <div class="am-u-sm-10">
+		      <input type="password" name="passworded" minlength="6"  id="pwd2" placeholder="必须与前面输入一致"   required>
+		    </div>
+		  </div>
+		  
+		 
+		  
+		  
+		  <div class="am-form-group">
+		    <div class="am-u-sm-10 am-u-sm-offset-2">
+		      <button type="submit" class="am-btn-primary am-radius">注册</button>
+		    </div>
+		  </div>
+		</form>
+    </div>
+    
+    <div class="hide">
+	   <form class="am-form am-form-horizontal"  action="${ctxPath}/login/registerNow">
+	   <input type="hidden" name="admin.role" value="2" />
+		  <div class="am-form-group">
+		    <label for="doc-ipt-3" class="am-u-sm-2 am-form-label">Email/用户名</label>
+		    <div class="am-u-sm-10">
+		      <input type="text" name="admin.u_username" id="admin.u_username" maxlength="12" minlength="6" required placeholder="输入你的Email/用户名">
+		    </div>
+		  </div>
+		
+		  <div class="am-form-group">
+		    <label for="doc-ipt-pwd-2" class="am-u-sm-2 am-form-label" required>密码</label>
+		    <div class="am-u-sm-10">
+		      <input type="password" name="admin.u_pwd" id="doc-ipt-pwd-3" placeholder="设置一个密码吧">
+		    </div>
+		  </div>
+		
+		 <div class="am-form-group">
+		    <label for="doc-ipt-pwd-2" class="am-u-sm-2 am-form-label">确认密码</label>
+		    <div class="am-u-sm-10">
+		      <input type="password" name="passworded" id="doc-ipt-pwd-4" data-equal-to="#doc-ipt-pwd-3" placeholder="必须与前面输入一致">
+		    </div>
+		  </div>
+		
+<!-- 		  <div class="am-form-group"> -->
+<!-- 		    <label for="doc-ipt-pwd-2" class="am-u-sm-2 am-form-label">厂家名称</label> -->
+<!-- 		    <div class="am-u-sm-10"> -->
+<!-- 		      <input type="text" name="admin.factory_name" id="factory_name" placeholder="企业名称"> -->
+<!-- 		    </div> -->
+<!-- 		  </div> -->
+		  
+<!-- 		   <div class="am-form-group"> -->
+<!-- 		    <label for="doc-ipt-pwd-2" class="am-u-sm-2 am-form-label">企业类型</label> -->
+<!-- 		    <div class="am-u-sm-10"> -->
+<!-- 		      <input type="text" name="admin.factory_type" id="factory_type" placeholder=""> -->
+<!-- 		    </div> -->
+<!-- 		  </div> -->
+		
+<!-- 		  <div class="am-form-group"> -->
+<!-- 		    <label for="doc-ipt-pwd-2" class="am-u-sm-2 am-form-label">联系方式</label> -->
+<!-- 		    <div class="am-u-sm-10"> -->
+<!-- 		      <input type="text" name="admin.factory_tel" id="admin.factory_tel" placeholder=""> -->
+<!-- 		    </div> -->
+<!-- 		  </div> -->
+		  
+<!-- 		   <div class="am-form-group"> -->
+<!-- 		    <label for="doc-ipt-pwd-2" class="am-u-sm-2 am-form-label">所在地区</label> -->
+<!-- 		    <div class="am-u-sm-10"> -->
+<!-- 		      <input type="text" name="admin.u_address" id="u_address" placeholder=""> -->
+<!-- 		    </div> -->
+<!-- 		  </div> -->
+		  
+		  <div class="am-form-group">
+		    <div class="am-u-sm-10 am-u-sm-offset-2">
+		      <button type="submit" class="am-btn-primary am-radius">注册</button>
+		    </div>
+		  </div>
+		</form>
+  </div>
+</div>
+
+
+     <hr>
+    <hr>
+    <p>© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+  </div>
+</div>
+
+</body>
+</html>

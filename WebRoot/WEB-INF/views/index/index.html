@@ -1,0 +1,147 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>快裁缝 1.0 </title>
+  <meta name="keywords" content="HTML, HTML5, CSS, CSS3, JS, JavaScript, framework, Amaze UI, front-end, frontend, web development, 前端框架, 开源, meizi, meizi UI, 妹子UI, 妹子UI案例,妹子UIWeb Components">
+  <meta name="description" content="快裁缝提供一个最佳的服装设计师与工厂方交易平台">
+  <link rel="alternate icon" type="image/png" href="${ctxPath}/assets/i/favicon.png">
+  <link rel="stylesheet" href="${ctxPath}/template/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="css/style.css"></head>
+
+<body>
+  <!--[if lte IE 9 ]>
+  <div class="am-alert am-alert-danger ie-warning" data-am-alert>
+    <button type="button" class="am-close">&times;</button>
+    <div class="am-container">
+      365 安全卫士提醒：你的浏览器太古董了，妹子无爱，
+      <a
+    href="http://browsehappy.com/" target="_blank">速速点击换一个</a>
+      ！
+    </div>
+  </div>
+  <![endif]-->
+  <header class="am-topbar am-topbar-inverse am-topbar-fixed-top headercolor" id="header">
+    <div class="am-container">
+      <h1 class="am-topbar-brand am-text-ir">
+       快 裁 缝 <a href="#">快 裁 缝</a>
+      </h1>
+
+      <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-secondary am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}">
+        <span class="am-sr-only">导航切换</span>
+        <span class="am-icon-bars"></span>
+      </button>
+
+      <div class="am-collapse am-topbar-collapse am-topbar-right" id="doc-topbar-collapse">
+        <ul class="am-nav am-nav-pills am-topbar-nav">
+          <li class="am-active">
+            <a href="#">首页</a>
+          </li>
+          <li>
+            <a href="#" target="_blank">我的</a>
+          </li>
+           <li>
+            <a href="${ctxPath}/login/login" target="_blank">登录</a>
+          </li>
+          <li>
+            <a href="${ctxPath}/blog" target="_blank">联系我们</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- banner -->
+  <div class="bgimg ">
+    <div class="am-container">
+      <h1 class="am-animation-slide-right">是艺术品，也是衣服，期待与您一起实现!</h1>
+      <h2 class="am-animation-scale-up">快裁缝</h2>
+      <button type="button" class="am-btn-xl am-btn-secondary am-radius am-animation-slide-bottom "><a href="${ctxPath}/items" target="_blank"><b style="color: #ffffff;">点击搜索</b></a>
+      </button>
+    </div>
+  </div>
+  <article>
+    <div class="am-container" id="caseimgs">
+      <div class="am-tabs" data-am-tabs>
+   
+
+      </div>
+    </div>
+  </article>
+
+  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="http://cdn.amazeui.org/amazeui/2.4.2/js/amazeui.min.js"></script>
+  <script type="text/javascript">
+    $(window).scroll(function()
+{ 
+    if ($(window).scrollTop() > 0)
+    { 
+         $("#header").addClass('chageheader'); 
+    }
+    else 
+    {
+       $("#header").removeClass('chageheader');
+    }  
+});
+  </script>
+  
+
+
+<!-- <div class="hope"> -->
+<!--     <div class="am-g am-container"> -->
+<!--         <div class="am-u-lg-4 am-u-md-6 am-u-sm-12 hope-img"> -->
+<!--             <img src="assets/i/examples/landing.png" alt="" data-am-scrollspy="{animation:'slide-left', repeat: false}"> -->
+<!--             <hr class="am-article-divider am-show-sm-only hope-hr"> -->
+<!--         </div> -->
+<!--         <div class="am-u-lg-8 am-u-md-6 am-u-sm-12"> -->
+<!--             <h2 class="hope-title"> -->
+<!--                 Design Lab 你的设计实验            </h2> -->
+<!--             <p> -->
+<!--                 这是一个服装设计师的舞台<br/>我们的工作是让全世界有网络的人能欣赏到您优秀的设计！            </p> -->
+<!--         </div> -->
+<!--     </div> -->
+<!-- </div> -->
+
+<div class="about">
+    <div class="am-g am-container">
+        <div class="am-u-lg-12">
+            <h2 class="about-title about-color">
+                加入"快裁缝"，让您的作品为更多人熟知            </h2>
+
+            <div class="am-g">
+                <div class="am-u-lg-6 am-u-md-4 am-u-sm-12">
+                    <form class="am-form" method="get" action="${ctxPath}/login/register">
+                        <label class="about-color">邮箱</label>
+                        <input name="email" type="email">
+                        <br/>
+                        <button type="submit" class="am-btn am-btn-black am-btn-sm"><i class="am-icon-check"></i> 注册</button>
+                    </form>
+                    <hr class="am-article-divider am-show-sm-only">
+                </div>
+
+                <div class="am-u-lg-6 am-u-md-8 am-u-sm-12">
+                    <h4 class="about-color">关于我们</h4>
+
+                    <p>
+                        我们是一群特立独行，奇思异想的年轻人，因有着同样的梦想而聚集在一起。<br/>我们希望更多人能接触到优秀设计师们的原创设计作品，因为只有他们的梦想实现后，我们的梦想才算完成了。                        <br/>
+
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="footer">
+  <div class="am-container">
+    <p>© 2014 <a href="#" target="_blank">AllMobilize, Inc.</a> Licensed under <a
+        href="http://opensource.org/licenses/MIT" target="_blank">MIT license</a>. by the 快裁缝 Team.</p>
+  </div>
+</footer>
+</body>
+</html>

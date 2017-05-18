@@ -1,0 +1,261 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>查看搜单 - Powered By ${systemConfig.systemName}</title>
+
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+  <link rel="icon" type="image/png" href="${base}/template/assets/i/favicon.png">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="${base}/template/assets/i/app-icon72x72@2x.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="快裁缝"/>
+  <link rel="apple-touch-icon-precomposed" href="${base}/template/assets/i/app-icon72x72@2x.png">
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="${base}/template/assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="${base}/template/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="${base}/template/assets/css/app.css">
+
+<link href="${base}/img/ui/styles/base.css" rel="stylesheet">
+<link rel="stylesheet" href="${base}/img/ui/styles/lightSlider.css" />
+<link rel="stylesheet" href="${base}/img/ui/styles/prettify.css" />
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>  
+<script src="${base}/assets/js/amazeui.min.js"></script> 
+<script src="${base}/img/ui/lib/jquery.lightSlider.js"></script> 
+<script src="${base}/img/ui/lib/prettify.js"></script> 
+<script type="text/javascript">
+    
+    $(document).ready(function() {       
+		$('#imageGallery').lightSlider({
+            gallery:true,
+            minSlide:1,
+            maxSlide:1,
+            loop:false,
+            useCSS: true,
+			currentPagerPosition:'left'  
+        });
+	
+    });
+    
+  
+</script>
+<script>
+
+  $(document).ready(function() {       
+		$('#imageGallery2').lightSlider({
+            gallery:true,
+            minSlide:1,
+            maxSlide:1,
+            loop:false,
+            useCSS: true,
+			currentPagerPosition:'left'  
+        });
+	
+    });
+  $(function() {
+  $('#doc-prompt-toggle').on('click', function() {
+    $('#my-prompt').modal({
+      relatedTarget: this,
+      onConfirm: function(e) {
+       alert('你输入的是：' + e.data[0] +'元'|| '');
+       $.ajax({
+				url:'${base}/items/setPrice?itemId=${items.id}',
+				data:{price:e.data[0],msg:e.data[1]},		
+				dataType: "json",
+				success: function(data) {				
+					if (data.status == "success") {
+							alert(data.message);
+					}else{
+						alert(data.message);
+					}
+				}
+			});
+       
+      },
+      onCancel: function(e) {
+        alert('您放弃了出价!');
+      }
+    });
+  });
+});
+</script>
+</head>
+<body>
+<!--在这里编写你的代码-->
+<div class="admin-content">
+
+  <div class="am-cf am-padding">
+     <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">搜单管理</strong> / <small>查看搜单</small></div>
+  </div>
+  <hr style="am-padding-bottom:2px;margin:0px;"/>
+  <div class="am-tabs am-margin" data-am-tabs style="padding-top:5px;margin:0px; height: 500px;">
+    <ul class="am-tabs-nav am-nav am-nav-tabs">
+      <li class="am-active"><a href="#tab1">搜单信息</a></li>
+   
+    </ul>
+
+    <div class="am-tabs-bd">
+      <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+       	  <div class="am-g" >
+			<div class="am-u-sm-12" style="padding:0px;margin:0px;">
+			
+			       <form id="inputForm" class="am-form" method="post">	
+			       	    
+			            <div class="am-g am-margin-top-sm" style="line-height:0.5">
+			            <div class="am-u-sm-4 am-u-md-2 am-text-right am-kai am-text-default">搜单编号:</div>
+			            <div class="am-u-sm-8 am-u-md-3">
+			              <p>${items.id!}</p>
+			            </div>
+			            <div class="am-u-sm-4 am-u-md-2 am-text-right am-kai am-text-default">搜单时间:</div>
+			            <div class="am-u-sm-8 am-u-md-3 am-u-end col-end">
+			            	<p>${items.createDate,dateFormat="yyyy-MM-dd HH:mm:ss"}</p>
+			            </div>
+			            </div>
+		
+			          <div class="am-g am-margin-top-sm" style="line-height:0.5">
+			            <div class="am-u-sm-4 am-u-md-2 am-text-right am-kai am-text-default">样衣类别:</div>
+			            <div class="am-u-sm-8 am-u-md-3">
+			              <p>${items.c_type}</p>
+			            </div>
+			            <div class="am-u-sm-4 am-u-md-2 am-text-right am-kai am-text-default">加工数量:</div>
+			            <div class="am-u-sm-8 am-u-md-3 am-u-end col-end">
+			              <p class="am-text-danger ">共${items.s+items.m+items.l+items.xl}件&nbsp;&nbsp;<small class="am-text-success">[ S:${items.s}件  M:${items.m}件  L:${items.l}件  XL:${items.xl}件 ]</small></p>
+			            </div>
+			          </div>
+			
+			          <div class="am-g am-margin-top-sm" style="line-height:0.5">
+			            <div class="am-u-sm-12 am-u-md-2 am-text-right admin-form-text am-kai am-text-default">样衣品类:</div>
+			            <div class="am-u-sm-12 am-u-md-3">
+			              <p>${items.c_category}</p>
+			            </div>
+			           <div class="am-u-sm-12 am-u-md-2 am-text-right admin-form-text am-kai am-text-default">布料类型:</div>
+			            <div class="am-u-sm-12 am-u-md-3 am-u-end col-end">
+			              <p>${items.c_isbeoffer}<small class="am-text-success">&nbsp;&nbsp;[<%if(items.c_decide){%>由厂房提供<%}else{%>由用户提供<%}%>]</small></p>
+			            </div>
+			           </div>
+			        	
+		        	
+			           
+			          <div class="am-g am-margin-top-sm" style="line-height:2">
+			            <div class="am-u-sm-12 am-u-md-2 am-text-right admin-form-text am-kai am-text-default">其他说明:</div>
+			            <div class="am-u-sm-12 am-u-md-3 am-u-end col-end">
+			              <p class="am-text-warning am-text-break"><%if(items.c_describe==null){%>无<%}else{%>  ${items.c_describe}<%}%></p>
+			            </div>
+			          </div>
+					 
+				        <div class="container-fluid example">
+				            <div class="row">
+				                <div class="col-xs-12">
+				                	<section class="install">
+				                        <div class="am-alert am-alert-secondary">
+										样衣图片:
+										</div>
+				                            <div class="col-sm-6">
+				                                 <div class="demo">
+				                                    <ul id="imageGallery" class="gallery list-unstyled">
+				                                     	  <%if (!has(itemsImageList)){%>
+				                                   		   <li data-thumb="${base}${systemConfig.defaultThumbnailProductImagePath}""> <a href="javascript:void(0)">
+				                                            <img src="${base}${systemConfig.defaultThumbnailProductImagePath}"" /> </a> 
+				                                        	 </li>
+															
+							                        	<%}%>
+				                                    	<%for(list in itemsImageList!){%>
+				                                        <li data-thumb="${base}${list.smallProductImagePath}"> <a href="javascript:void(0)">
+				                                            <img src="${base}${list.bigProductImagePath}" />
+				                                            </a> </li>
+				                                        <%}%>
+				                                      
+				                                    </ul>
+				                                </div>
+				                            </div>				               
+				                    </section>
+				                </div>
+				            </div>
+				         </div>
+				                     
+				                       
+				        <div class="container-fluid example2">
+				            <div class="row">
+				                <div class="col-xs-12">
+				                	<section class="install">
+				                        <div class="am-alert am-alert-secondary">
+										样衣图案:
+										</div>
+				                            <div class="col-sm-6">
+				                                 <div class="demo">
+				                                    <ul id="imageGallery2" class="gallery list-unstyled">
+				                                   		 
+				                                    	<%for(list in itemsPatternList!){%>
+				                                        <li data-thumb="${base}${list.smallProductImagePath}"> <a href="javascript:void(0)">
+				                                            <img src="${base}${list.bigProductImagePath}" /> </a> 
+				                                         </li>
+				                                        <%}%>
+				                                        <%if (!has(itemsPatternList) ){%>
+				                                   		   <li data-thumb="${base}${systemConfig.defaultThumbnailProductImagePath}""> <a href="javascript:void(0)">
+				                                            <img src="${base}${systemConfig.defaultThumbnailProductImagePath}"" /> </a> 
+				                                        	 </li>
+															
+							                        	<%}%>
+				                                    </ul>
+				                                </div>
+				                            </div>				               
+				                       </section>
+				                    </div>
+				                 </div>
+				             </div>     
+			
+		        </form>
+			</div>
+		</div>
+
+      </div>
+
+   </div>
+    <div class="am-margin">
+    <%if(role==2){%>
+        	<button type="button" class="am-btn am-btn-warning am-btn-xs" onclick="location.href='${base}/items/edit?id=${items.id}'">编   辑</button>
+        	 <button type="button" class="am-btn am-btn-warning am-btn-xs" onclick="location.href='${base}/items/list'">返   回</button> <%}else{%>
+        	<button  type="button" class="am-btn am-btn-warning am-btn-xs" id="doc-prompt-toggle"> 出价 </button>
+        	 <button type="button" class="am-btn am-btn-warning am-btn-xs" onclick="location.href='${base}/items/info'">返   回</button><%}%>
+    	   
+  	</div>
+  </div>
+	
+	<div class="am-modal am-modal-prompt" tabindex="-1" id="my-prompt">
+	  <div class="am-modal-dialog">
+	    <div class="am-modal-hd">出价</div>
+	    <div class="am-modal-bd">
+	   输入你的报价（单位：￥）
+	      <input type="text" class="am-modal-prompt-input">
+	    </div>
+	   
+	  给对方留言
+	      <input type="text" class="am-modal-prompt-input">
+	 
+	    <div class="am-modal-footer">
+	      <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+	      <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+	    </div>
+	  </div>
+	</div>
+  
+</div>
+</body>
+</html>

@@ -1,0 +1,535 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>编辑搜索内容</title>
+<meta name="Copyright" content="JFinalShop" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<% include("/common/include.html"){}%>
+<link href="${ctxPath}/template/admin/css/input.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${ctxPath}/js/laydate-v1.1/laydate/laydate.js"></script>
+<script type="text/javascript">
+$(function(){
+
+var decide = ${items.c_decide};
+	if(decide==true){
+		$("#radio1").attr("checked","checked");
+	}else{
+		$("#radio0").attr("checked","checked");
+	}
+});
+$().ready(function() {	
+		
+	// 商品图片预览滚动栏
+	$(".productImageArea .scrollable").scrollable({
+		speed: 600
+	});
+	
+	// 显示商品图片预览操作层
+	$(".productImageArea li").livequery("mouseover", function() {
+		$(this).find(".productImageOperate").show();
+	});
+	
+	// 隐藏商品图片预览操作层
+	$(".productImageArea li").livequery("mouseout", function() {
+		$(this).find(".productImageOperate").hide();
+	});
+	
+	// 商品图片左移
+	$(".left").livequery("click", function() {
+		var $productImageLi = $(this).parent().parent().parent();
+		var $productImagePrevLi = $productImageLi.prev("li");
+		if ($productImagePrevLi.length > 0) {
+			$productImagePrevLi.insertAfter($productImageLi);
+		}
+	});
+	
+	// 商品图片右移
+	$(".right").livequery("click", function() {
+		var $productImageLi = $(this).parent().parent().parent();
+		var $productImageNextLi = $productImageLi.next("li");
+		if ($productImageNextLi.length > 0) {
+			$productImageNextLi.insertBefore($productImageLi);
+		}
+	});
+	
+	// 商品图片删除
+	$(".delete").livequery("click", function() {
+		var $productImageLi = $(this).parent().parent().parent();
+		var $productImagePreview = $productImageLi.find(".productImagePreview");
+		var $productImageIds = $productImageLi.find("input[name='productImageIds']");
+		var $productImageFiles = $productImageLi.find("input[name='productImages']");
+		var $productImageParameterTypes = $productImageLi.find("input[name='productImageParameterTypes']");
+		$productImageIds.remove();
+		$productImageFiles.after('<input type="file" name="productImages" hidefocus="true" />');
+		$productImageFiles.remove();
+		$productImageParameterTypes.remove();
+		
+		$productImagePreview.html("暂无图片");
+		$productImagePreview.removeAttr("title");
+		if ($.browser.msie) {
+			if(window.XMLHttpRequest) {
+				$productImagePreview[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod = 'scale', src='')";
+			}
+		}
+	});
+	
+	// 商品图片选择预览
+	var $productImageScrollable = $(".productImageArea .scrollable").scrollable();
+	var productImageLiHtml = '<li><div class="productImageBox"><div class="productImagePreview">暂无图片</div><div class="productImageOperate"><a class="left" href="javascript: void(0);" alt="左移" hidefocus="true"></a><a class="right" href="javascript: void(0);" title="右移" hidefocus="true"></a><a class="delete" href="javascript: void(0);" title="删除" hidefocus="true"></a></div><a class="productImageUploadButton" href="javascript: void(0);"><input type="file" name="productImages" hidefocus="true" /><div>上传新图片</div></a></div></li>';
+	var index = 0;
+	$(".productImageUploadButton input").livequery("change", function() {
+		var $this = $(this);
+		var $productImageLi = $this.parent().parent().parent();
+		var $productImagePreview = $productImageLi.find(".productImagePreview");
+		var fileName = $this.val().substr($this.val().lastIndexOf("\\") + 1);
+		if (/(<%for(list in strutil.split(systemConfig.allowedUploadImageExtension,@com.jfinalshop.bean.SystemConfig.EXTENSION_SEPARATOR)){%><%if (!listLP.last){%>.${list}|<%}else{%>.${list}<%}%><%}%>)$/i.test($this.val()) == false) {
+			$.message("您选择的文件格式错误！");
+			return false;
+		}
+		$productImagePreview.empty();
+		$productImagePreview.attr("title", fileName);
+		var isChrome = navigator.userAgent.toLowerCase().match(/chrome/) != null;//判断是否是谷歌浏览器
+		if ($.browser.msie) {
+			if(!window.XMLHttpRequest) {
+				$productImagePreview.html('<img src="' + $this.val() + '" />');
+			} else {
+				$this[0].select();
+				var imgSrc = document.selection.createRange().text;
+				$productImagePreview[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod = 'scale', src='" + imgSrc + "')";
+			}
+		} else if ($.browser.mozilla || isChrome) {
+			var objectURL = window.URL.createObjectURL($this[0].files[0]);//Firefox 7.0下getAsDataURL取文件绝对路径的替代方法
+			$productImagePreview.html('<img src="' + objectURL + '" />');
+			//$productImagePreview.html('<img src="' + $this[0].files[0].getAsDataURL() + '" />');
+		} else {
+			$productImagePreview.html(fileName);
+		}
+		
+		 if ($productImageLi.next().length == 0) {
+			 productImageLiHtml = productImageLiHtml.replace("productImages","productImages"+index);
+			 $productImageLi.after(productImageLiHtml);
+			 index++;
+			if ($productImageScrollable.getSize() > 5) {
+				$productImageScrollable.next();
+			}
+		} 
+		
+		var $productImageIds = $productImageLi.find("input[name='productImageIds']");
+		var $productImageParameterTypes = $productImageLi.find("input[name='productImageParameterTypes']");
+		var $productImageUploadButton = $productImageLi.find(".productImageUploadButton");
+		$productImageIds.remove();
+		 if ($productImageParameterTypes.length > 0) {
+			$productImageParameterTypes.val("productImageFile");
+		} else {
+			$productImageUploadButton.append('<input type="hidden" name="productImageParameterTypes" value="productImageFile" />');
+		} 
+	});
+
+
+});
+
+
+$().ready(function() {	
+		
+	
+	// 商品图片预览滚动栏
+	$(".itemsImageArea .scrollable").scrollable({
+		speed: 600
+	});
+	
+	// 显示商品图片预览操作层
+	$(".itemsImageArea li").livequery("mouseover", function() {
+		$(this).find(".itemsImageOperate").show();
+	});
+	
+	// 隐藏商品图片预览操作层
+	$(".itemsImageArea li").livequery("mouseout", function() {
+		$(this).find(".itemsImageOperate").hide();
+	});
+	
+	// 商品图片左移
+	$(".left").livequery("click", function() {
+		var $itemsImageLi = $(this).parent().parent().parent();
+		var $itemsImagePrevLi = $itemsImageLi.prev("li");
+		if ($itemsImagePrevLi.length > 0) {
+			$itemsImagePrevLi.insertAfter($itemsImageLi);
+		}
+	});
+	
+	// 商品图片右移
+	$(".right").livequery("click", function() {
+		var $itemsImageLi = $(this).parent().parent().parent();
+		var $itemsImageNextLi = $itemsImageLi.next("li");
+		if ($itemsImageNextLi.length > 0) {
+			$itemsImageNextLi.insertBefore($itemsImageLi);
+		}
+	});
+	
+	// 商品图片删除
+	$(".delete").livequery("click", function() {
+		var $itemsImageLi = $(this).parent().parent().parent();
+		var $itemsImagePreview = $itemsImageLi.find(".itemsImagePreview");
+		var $itemsImageIds = $itemsImageLi.find("input[name='itemsImageIds']");
+		var $itemsImageFiles = $itemsImageLi.find("input[name='itemsImages']");
+		var $itemsImageParameterTypes = $itemsImageLi.find("input[name='itemsImageParameterTypes']");
+		$itemsImageIds.remove();
+		$itemsImageFiles.after('<input type="file" name="itemsImages" hidefocus="true" />');
+		$itemsImageFiles.remove();
+		$itemsImageParameterTypes.remove();
+		
+		$itemsImagePreview.html("暂无图片");
+		$itemsImagePreview.removeAttr("title");
+		if ($.browser.msie) {
+			if(window.XMLHttpRequest) {
+				$itemsImagePreview[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod = 'scale', src='')";
+			}
+		}
+	});
+	
+	// 商品图片选择预览
+	var $itemsImageScrollable = $(".itemsImageArea .scrollable").scrollable();
+	var itemsImageLiHtml = '<li><div class="itemsImageBox"><div class="itemsImagePreview">暂无图片</div><div class="itemsImageOperate"><a class="left" href="javascript: void(0);" alt="左移" hidefocus="true"></a><a class="right" href="javascript: void(0);" title="右移" hidefocus="true"></a><a class="delete" href="javascript: void(0);" title="删除" hidefocus="true"></a></div><a class="itemsImageUploadButton" href="javascript: void(0);"><input type="file" name="itemsImages" hidefocus="true" /><div>上传新图片</div></a></div></li>';
+	var index = 0;
+	$(".itemsImageUploadButton input").livequery("change", function() {
+		var $this = $(this);
+		var $itemsImageLi = $this.parent().parent().parent();
+		var $itemsImagePreview = $itemsImageLi.find(".itemsImagePreview");
+		var fileName = $this.val().substr($this.val().lastIndexOf("\\") + 1);
+		if (/(<%for(list in strutil.split(systemConfig.allowedUploadImageExtension,@com.jfinalshop.bean.SystemConfig.EXTENSION_SEPARATOR)){%><%if (!listLP.last){%>.${list}|<%}else{%>.${list}<%}%><%}%>)$/i.test($this.val()) == false) {
+			$.message("您选择的文件格式错误！");
+			return false;
+		}
+		$itemsImagePreview.empty();
+		$itemsImagePreview.attr("title", fileName);
+		var isChrome = navigator.userAgent.toLowerCase().match(/chrome/) != null;//判断是否是谷歌浏览器
+		if ($.browser.msie) {
+			if(!window.XMLHttpRequest) {
+				$itemsImagePreview.html('<img src="' + $this.val() + '" />');
+			} else {
+				$this[0].select();
+				var imgSrc = document.selection.createRange().text;
+				$itemsImagePreview[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod = 'scale', src='" + imgSrc + "')";
+			}
+		} else if ($.browser.mozilla || isChrome) {
+			var objectURL = window.URL.createObjectURL($this[0].files[0]);//Firefox 7.0下getAsDataURL取文件绝对路径的替代方法
+			$itemsImagePreview.html('<img src="' + objectURL + '" />');
+			//$itemsImagePreview.html('<img src="' + $this[0].files[0].getAsDataURL() + '" />');
+		} else {
+			$itemsImagePreview.html(fileName);
+		}
+		
+		 if ($itemsImageLi.next().length == 0) {
+			 itemsImageLiHtml = itemsImageLiHtml.replace("itemsImages","itemsImages"+index);
+			 $itemsImageLi.after(itemsImageLiHtml);
+			 index++;
+			if ($itemsImageScrollable.getSize() > 5) {
+				$itemsImageScrollable.next();
+			}
+		} 
+		
+		var $itemsImageIds = $itemsImageLi.find("input[name='itemsImageIds']");
+		var $itemsImageParameterTypes = $itemsImageLi.find("input[name='itemsImageParameterTypes']");
+		var $itemsImageUploadButton = $itemsImageLi.find(".itemsImageUploadButton");
+		$itemsImageIds.remove();
+		 if ($itemsImageParameterTypes.length > 0) {
+			$itemsImageParameterTypes.val("itemsImageFile");
+		} else {
+			$itemsImageUploadButton.append('<input type="hidden" name="itemsImageParameterTypes" value="itemsImageFile" />');
+		} 
+	});
+
+
+})
+</script>
+</head>
+<body class="input">
+	<div class="body">
+		<div class="inputBar">
+			<h1><span class="icon">&nbsp;</span>编辑搜单</h1>
+		</div>
+
+		<form id="inputForm" class="validate" action="${ctxPath}/items/update" enctype="multipart/form-data" method="post">
+			<input type="hidden" name="items.id" value="${items.id!}" />
+			
+			<table class="inputTable tabContent">
+				<tr>
+					<th>
+						服装种类:
+					</th>
+					<td>	
+					 <select name="items.c_type" class="{required: true}">
+						
+							<%for(list in itemStyleList){%>
+								<option value="${list.name}"<%if (list.name == items.c_type!){%> selected="true" <%}%>>
+									${list.name}
+								</option>
+							<%}%>
+						</select>
+				
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				
+			
+				<tr>
+					<th>
+						服装品类:
+					</th>
+					<td>
+						<select name="items.c_category" class="{required: true}">
+							<option value="">请选择...</option>
+							<%for(list in itemCategoryList){%>
+								<option value="${list.name}"<%if (list.name == items.c_category!){%> selected="true" <%}%>>
+									${list.name}
+								</option>
+							<%}%>
+						</select>
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				
+				<tr>
+					<th>
+						布料类型:
+					</th>
+					<td>
+						<select name="items.c_isbeoffer" class="{required: true}">
+							<option value="">请选择...</option>
+							<%for(list in itemSoftList){%>
+								<option value="${list.name}"<%if (list.name == items.c_isbeoffer!){%> selected="true" <%}%>>
+									${list.name}
+								</option>
+							<%}%>
+						</select>
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						布料是否由工厂提供:
+					</th>
+					<td>
+						<div class="am-form-group">					 
+						  <label class="am-radio-inline">
+						    <input type="radio" id="radio1" name="items.c_decide" value="1" > 是
+						  </label>
+						  <label class="am-radio-inline">
+						    <input type="radio" id="radio0" name="items.c_decide" value="0" > 否
+						  </label>
+						</div>
+						
+					</td>
+				</tr>
+				<tr>
+					<th>
+						加工数量:
+					</th>
+					
+					<td>
+						<label>S:</label>
+						<input type="number" name="items.s" value="${items.s}" style="width:35px;"class="formText {required: true, min: 0}" value="${items.s!"0"}" />
+						<label>件        </label>
+					
+						<label>M:</label>
+						<input type="number" name="items.m" value="${items.m}" style="width:35px;" class="formText {required: true, min: 0}" value="${items.m!"0"}" />
+						<label>件  </label>
+					
+						<label>L:</label>
+						<input type="number" name="items.l" value="${items.l}" style="width:35px;" class="formText {required: true, min: 0}" value="${items.l!"0"}" />
+						<label>件  </label>
+						
+						<label>XL:</label>
+						<input type="number" name="items.xl" value="${items.xl}" style="width:35px;" class="formText {required: true, min: 0}" value="${items.xl!"0"}" />
+						<label>件  </label>
+				
+					</td>
+					
+				</tr>
+
+				
+				<tr>
+					<th>
+						样衣图片
+					</th>
+					<td>
+						<div class="productImageArea">
+							<div class="example"></div>
+							<a class="prev browse" href="javascript:void(0);" hidefocus="true"></a>
+							<div class="scrollable">
+								<ul class="items">
+									<%for(list in itemsImageList!){%>
+										<li>
+											<div class="productImageBox">
+												<div class="productImagePreview png">
+													<img src="${base}${list.thumbnailProductImagePath}" >
+												</div>
+												<div class="productImageOperate">
+													<a class="left" href="javascript: void(0);" alt="左移" hidefocus="true"></a>
+													<a class="right" href="javascript: void(0);" title="右移" hidefocus="true"></a>
+													<a class="delete" href="javascript: void(0);" title="删除" hidefocus="true"></a>
+												</div>
+												<a class="productImageUploadButton" href="javascript: void(0);">
+													<input type="hidden" name="productImageIds" value="${list.id}" />
+													<input type="hidden" name="productImageParameterTypes" value="productImageId" />
+													<%if (systemConfig.allowedUploadImageExtension != ""){%>
+														<input type="file" name="productImages" hidefocus="true" />
+														<div>上传新图片</div>
+													<%}else{%>
+														<div>不允许上传</div>
+													<%}%>
+												</a>
+											</div>
+										</li>
+									<%}%>
+									<li>
+										<div class="productImageBox">
+											<div class="productImagePreview png">暂无图片</div>
+											<div class="productImageOperate">
+												<a class="left" href="javascript: void(0);" alt="左移" hidefocus="true"></a>
+												<a class="right" href="javascript: void(0);" title="右移" hidefocus="true"></a>
+												<a class="delete" href="javascript: void(0);" title="删除" hidefocus="true"></a>
+											</div>
+											<a class="productImageUploadButton" href="javascript: void(0);">
+									
+												<%if (systemConfig.allowedUploadImageExtension != ""){%>
+													<input type="file" name="productImages" hidefocus="true" />
+													<div>上传新图片</div>
+												<%}else{%>
+													<div>不允许上传</div>
+												<%}%>
+											</a>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<a class="next browse" href="javascript:void(0);" hidefocus="true"></a>
+							<div class="blank"></div>
+							<%if (systemConfig.allowedUploadImageExtension != ""){%>
+								<span class="warnInfo"><span class="icon">&nbsp;</span>
+									<%if ((systemConfig.uploadLimit != 0) && (systemConfig.uploadLimit < 1024)){%>
+										小于${systemConfig.uploadLimit}KB
+									<%}else if (systemConfig.uploadLimit >= 1024){%>
+										小于${systemConfig.uploadLimit / 1024}MB
+									<%}%> 
+									<%for(list in strutil.split(systemConfig.allowedUploadImageExtension,@com.jfinalshop.bean.SystemConfig.EXTENSION_SEPARATOR)){%>
+										<%if (listLP.last){%>
+											*.${list};
+										<%}else{%>
+											*.${list}
+										<%}%>
+									<%}%>
+								</span>
+							<%}else{%>
+								<span class="warnInfo"><span class="icon">&nbsp;</span>系统设置不允许上传图片文件!</span>
+							<%}%>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						样衣图案
+					</th>
+					<td>
+						<div class="itemsImageArea">
+							<div class="example"></div>
+							<a class="prev browse" href="javascript:void(0);" hidefocus="true"></a>
+							<div class="scrollable">
+								<ul class="items">
+									<%for(list in itemsPatternList!){%>
+										<li>
+											<div class="itemsImageBox">
+												<div class="itemsImagePreview png">
+													<img src="${base}${list.thumbnailProductImagePath}" >
+												</div>
+												<div class="itemsImageOperate">
+													<a class="left" href="javascript: void(0);" alt="左移" hidefocus="true"></a>
+													<a class="right" href="javascript: void(0);" title="右移" hidefocus="true"></a>
+													<a class="delete" href="javascript: void(0);" title="删除" hidefocus="true"></a>
+												</div>
+												<a class="itemsImageUploadButton" href="javascript: void(0);">
+													<input type="hidden" name="itemsImageIds" value="${list.id}" />
+													<input type="hidden" name="itemsImageParameterTypes" value="itemsImageId" />
+													<%if (systemConfig.allowedUploadImageExtension != ""){%>
+														<input type="file" name="itemsImages" hidefocus="true" />
+														<div>上传新图片</div>
+													<%}else{%>
+														<div>不允许上传</div>
+													<%}%>
+												</a>
+											</div>
+										</li>
+									<%}%>
+									<li>
+										<div class="itemsImageBox">
+											<div class="itemsImagePreview png">暂无图片</div>
+											<div class="itemsImageOperate">
+												<a class="left" href="javascript: void(0);" alt="左移" hidefocus="true"></a>
+												<a class="right" href="javascript: void(0);" title="右移" hidefocus="true"></a>
+												<a class="delete" href="javascript: void(0);" title="删除" hidefocus="true"></a>
+											</div>
+											<a class="itemsImageUploadButton" href="javascript: void(0);">
+												
+												<%if (systemConfig.allowedUploadImageExtension != ""){%>
+													<input type="file" name="itemsImages" hidefocus="true" />
+													
+													<div>上传新图片</div>
+												<%}else{%>
+													<div>不允许上传</div>
+												<%}%>
+											</a>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<a class="next browse" href="javascript:void(0);" hidefocus="true"></a>
+							<div class="blank"></div>
+							<%if (systemConfig.allowedUploadImageExtension != ""){%>
+								<span class="warnInfo"><span class="icon">&nbsp;</span>
+									<%if ((systemConfig.uploadLimit != 0) && (systemConfig.uploadLimit < 1024)){%>
+										小于${systemConfig.uploadLimit}KB
+									<%}else if (systemConfig.uploadLimit >= 1024){%>
+										小于${systemConfig.uploadLimit / 1024}MB
+									<%}%> 
+									<%for(list in strutil.split(systemConfig.allowedUploadImageExtension,@com.jfinalshop.bean.SystemConfig.EXTENSION_SEPARATOR)){%>
+										<%if (listLP.last){%>
+											*.${list};
+										<%}else{%>
+											*.${list}
+										<%}%>
+									<%}%>
+								</span>
+							<%}else{%>
+								<span class="warnInfo"><span class="icon">&nbsp;</span>系统设置不允许上传图片文件!</span>
+							<%}%>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						截止日期:
+					</th>
+					<td>
+						<input name="items.lastTime" value="${items.lastTime}" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					</td>
+				</tr>
+				<tr>
+					<th>
+						附加描述:
+					</th>
+					<td>
+						<textarea name="items.c_describe" value="${items.c_describe}"class="formTextarea">${items.c_describe!}</textarea>
+					</td>
+				</tr>
+			</table>
+		
+			
+			
+			<div class="buttonArea">
+				<input type="submit" class="formButton" onclick="location.href='${base}/items/update'" value="保存" hidefocus="true" />&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="button" class="formButton" onclick="window.history.back(); return false;" value="返  回" hidefocus="true" />
+			</div>
+		</form>		
+	</div>
+</body>
+</html>

@@ -1,0 +1,141 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="${ctxPath}/css/base.css" >
+    <link rel="stylesheet" href="${ctxPath}/css/gb.css"  media="screen">
+    <link rel="stylesheet" href="${ctxPath}/css/list.css" >
+     <script type="text/javascript" src="${ctxPath}/template/assets/js/jquery-1.7.1.min.js" ></script>
+    <script type="text/javascript" src="${ctxPath}/js/jquertFunc.js" ></script>
+   
+    <!--[if lte IE 8]>
+    <script src="http://localhost:8089/mcms//templets/1/ejiwei//js/html5.js" ></script>
+    <![endif]-->
+</head>
+<body>
+<div class="plwrap">
+	<!--顶部导航--> 
+	    <script type="text/javascript">
+    jQuery(document).ready(function(e) {			
+        t = jQuery('.newsrfix').offset().top;
+        mh = jQuery('.newsdetail').height();
+        fh = jQuery('.newsrfix').height();
+        jQuery(window).scroll(function(e){
+            s = jQuery(document).scrollTop();	
+            if(s > t - 10){  
+                jQuery('.newsrfix').css('position','fixed');
+                if(s + fh > mh){
+                    jQuery('.newsrfix').css('top',mh-s-fh+'px');	
+                }				
+            }else{
+                jQuery('.newsrfix').css('position','');
+            }
+        })
+    });
+    </script>
+    <!--顶部导航--> 
+ 	<div id="header" style="width:100%; height:58px;">
+        <div class="topNav">
+          <div class="homeLogo"></div>
+          <div class="navList" style="margin-left:60px;">
+           
+          </div>
+          <a href="javascript:void(0)" class="topTel" title="联系电话">0000-0000000</a> <a href="javascript:void(0)"  target="_blank" class="topQQ" title="QQ咨询"></a> <a href="javascript:void(0)"  target="_blank" class="topweibo" title="官方微博"></a>
+          <div class="clear"></div>
+        </div>
+	</div>
+  
+  <!--顶部导航结束-->
+
+
+	<!--内容-->
+	<div class="newsdetailcon">
+  		<div class="newsdetail">
+    		<p class="news_title">关于我们</p>
+    <p class="newstime">发表于：2015-09-18 04:31:18</p>
+    <div class="ncontent"><p>&nbsp; 公司于2012年3月8日，领取营业 &nbsp; 执照。</p><p>&nbsp; 公司名称：快裁缝科技有限公司</p><p>&nbsp; 经营范围：计算机系统服务及技术开发、咨询服务</p><p><br/></p>
+      <p style="border-bottom:1px solid #ccc;height:1px;"></p>
+      <br/>
+      <p style="line-height:24px;font-size:14px;color:#7c7c7c;text-indent:2;"> （非特殊说明，本文版权归原作者所有，转载请注明出处 ）<br/>
+        <span style="color:#222;"> 快裁缝力于为企业提供创意设计、网站建设、定制开发、运营及推广等全方位服务。 </span></p>
+      <br/>
+      <br/>
+      <br/>
+      <img src="http://localhost:8089/mcms//templets/1/ejiwei//images/qrcode.png"  style="float:left;"/>
+      <p style="float:left;width:280px;padding-top:20px;padding-left:30px;line-height:24px;font-size:14px;color:#222;">想在手机上、随时获取互联网前沿、设计资讯以及各种意想不到的"福利"吗？通过扫描二维码快速添加 </p>
+    </div>
+  </div>
+ 
+</div>
+<!--内容结束-->
+<div class="clear"></div>
+<!--底部版权-->
+<div class="footer">
+  <div class="flink"><span class="fr"></span></div>
+  <div class="footerWrap">
+    <div class="fContact">
+      <div class="fsns"> 
+      </div>
+      <p><span style="font-size:14px;">业务咨询：</span><br/>
+        <span class="ftel">0000-0000000 (9:30~18:00)</span></p>
+      <p class="fctxt">快裁缝科技有限公司<br/>
+        QQ: 153723735 &nbsp;<a href="javascript:void(0)"  style="color:white;" target="_blank">@快裁缝科技有限公司2012-2015</a></p>
+    </div>
+    <ul class="footerNav">
+      <li class="fNav"><a href=""  class="fnavmain">关于我们</a>
+        <ul>
+          <li><a href="" >了解我们</a></li>
+          <li><a href="" >客户案例</a></li>
+          <li><a href="" >发展历程</a></li>
+          <li><a href="" >我们的观点</a></li>
+          <li><a href="" >联系方式</a></li>
+        </ul>
+      </li>
+      <li class="fNav"><a href=""  class="fnavmain">我们的服务</a>
+        <ul>
+          <li><a href="" >网站建设</a></li>
+          <li><a href="" >网络营销</a></li>
+          <li><a href="" >移动APP开发</a></li>
+          <li><a href="" >电商运营外包</a></li>
+          <li><a href="" >网站运营维护</a></li>
+          <li><a href="" >程序开发</a></li>
+        </ul>
+      </li>
+      <li class="fNav"><a href=""  class="fnavmain">新闻资讯</a>
+        <ul>
+          <li><a href="" >公司资讯</a></li>
+          <li><a href="" >行业新闻</a></li>
+        </ul>
+      </li>
+      <li class="fNav"><a href=""  class="fnavmain">伙伴招募</a>
+        <ul>
+          <li><a href="" >资深网页设计师</a></li>
+          <li><a href="" >实习网页设计师</a></li>
+          <li><a href="" >项目经理</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+<div class="scrollhide">
+  <button id="ScrollToTop" class="btnimg Button2 WhiteButton Offscreen" type="button"></button>
+</div>
+<script type="text/javascript">
+       //返回顶部按钮
+	var a=jQuery(window).height()/2;		
+	$(window).scroll(function(){
+	    (window.innerWidth?window.pageYOffset:document.documentElement.scrollTop)>=a?jQuery("#ScrollToTop").removeClass("Offscreen"):jQuery("#ScrollToTop").addClass("Offscreen")
+	});
+	$("#ScrollToTop").click(function(){
+		jQuery("html, body").animate({scrollTop:"0px"},400);
+		return false
+	})
+</script>
+
+</body>
+</html>

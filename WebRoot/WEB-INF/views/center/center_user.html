@@ -1,0 +1,409 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>个人中心</title>
+  <meta name="description" content="这是一个 user 页面">
+  <meta name="keywords" content="user">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="${ctxPath}/assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="${ctxPath}/assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="${ctxPath}/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="${ctxPath}/assets/css/admin.css">
+	<link href="${ctxPath}/template/admin/css/input.css" rel="stylesheet" type="text/css" />
+	<% include("/common/include.html"){}%>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+<script>
+function save(url){
+		var formData = jQuery("#inputForm").serializeArray();
+		$.ajax({
+				url: '${base}/center/saveUser',
+				data: formData,
+				dataType: "json",
+			
+				success: function(data) {
+					alert(data.message);
+					//$.message(data.status, data.message);
+				}
+			});		
+	location.reload();
+	}
+$().ready(function() {	
+		
+	
+	// 商品图片预览滚动栏
+	$(".productImageArea .scrollable").scrollable({
+		speed: 600
+
+	});
+	
+	// 显示商品图片预览操作层
+	$(".productImageArea li").livequery("mouseover", function() {
+		$(this).find(".productImageOperate").show();
+	});
+	
+	// 隐藏商品图片预览操作层
+	$(".productImageArea li").livequery("mouseout", function() {
+		$(this).find(".productImageOperate").hide();
+	});
+	
+	// 商品图片左移
+	$(".left").livequery("click", function() {
+		var $productImageLi = $(this).parent().parent().parent();
+		var $productImagePrevLi = $productImageLi.prev("li");
+		if ($productImagePrevLi.length > 0) {
+			$productImagePrevLi.insertAfter($productImageLi);
+		}
+	});
+	
+	// 商品图片右移
+	$(".right").livequery("click", function() {
+		var $productImageLi = $(this).parent().parent().parent();
+		var $productImageNextLi = $productImageLi.next("li");
+		if ($productImageNextLi.length > 0) {
+			$productImageNextLi.insertBefore($productImageLi);
+		}
+	});
+	
+	// 商品图片删除
+	$(".delete").livequery("click", function() {
+		var $productImageLi = $(this).parent().parent().parent();
+		var $productImagePreview = $productImageLi.find(".productImagePreview");
+		var $productImageIds = $productImageLi.find("input[name='productImageIds']");
+		var $productImageFiles = $productImageLi.find("input[name='productImages']");
+		var $productImageParameterTypes = $productImageLi.find("input[name='productImageParameterTypes']");
+		$productImageIds.remove();
+		$productImageFiles.after('<input type="file" name="productImages" hidefocus="true" />');
+		$productImageFiles.remove();
+		$productImageParameterTypes.remove();
+		
+		$productImagePreview.html("暂无图片");
+		$productImagePreview.removeAttr("title");
+		if ($.browser.msie) {
+			if(window.XMLHttpRequest) {
+				$productImagePreview[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod = 'scale', src='')";
+			}
+		}
+	});
+	
+	// 商品图片选择预览
+	var $productImageScrollable = $(".productImageArea .scrollable").scrollable();
+	var productImageLiHtml = '<li><div class="productImageBox"><div class="productImagePreview">暂无图片</div><div class="productImageOperate"><a class="left" href="javascript: void(0);" alt="左移" hidefocus="true"></a><a class="right" href="javascript: void(0);" title="右移" hidefocus="true"></a><a class="delete" href="javascript: void(0);" title="删除" hidefocus="true"></a></div><a class="productImageUploadButton" href="javascript: void(0);"><input type="file" name="productImages" hidefocus="true" /><div>上传新图片</div></a></div></li>';
+	var index = 0;
+	$(".productImageUploadButton input").livequery("change", function() {
+		var $this = $(this);
+		var $productImageLi = $this.parent().parent().parent();
+		var $productImagePreview = $productImageLi.find(".productImagePreview");
+		var fileName = $this.val().substr($this.val().lastIndexOf("\\") + 1);
+		if (/(<%for(list in strutil.split(systemConfig.allowedUploadImageExtension,@com.jfinalshop.bean.SystemConfig.EXTENSION_SEPARATOR)){%><%if (!listLP.last){%>.${list}|<%}else{%>.${list}<%}%><%}%>)$/i.test($this.val()) == false) {
+			$.message("您选择的文件格式错误！");
+			return false;
+		}
+		$productImagePreview.empty();
+		$productImagePreview.attr("title", fileName);
+		var isChrome = navigator.userAgent.toLowerCase().match(/chrome/) != null;//判断是否是谷歌浏览器
+		if ($.browser.msie) {
+			if(!window.XMLHttpRequest) {
+				$productImagePreview.html('<img src="' + $this.val() + '" />');
+			} else {
+				$this[0].select();
+				var imgSrc = document.selection.createRange().text;
+				$productImagePreview[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod = 'scale', src='" + imgSrc + "')";
+			}
+		} else if ($.browser.mozilla || isChrome) {
+			var objectURL = window.URL.createObjectURL($this[0].files[0]);//Firefox 7.0下getAsDataURL取文件绝对路径的替代方法
+			$productImagePreview.html('<img src="' + objectURL + '" />');
+			//$productImagePreview.html('<img src="' + $this[0].files[0].getAsDataURL() + '" />');
+		} else {
+			$productImagePreview.html(fileName);
+		}
+		
+		 if ($productImageLi.next().length == 0) {
+			 productImageLiHtml = productImageLiHtml.replace("productImages","productImages"+index);
+			 $productImageLi.after(productImageLiHtml);
+			 index++;
+			if ($productImageScrollable.getSize() > 5) {
+				$productImageScrollable.next();
+			}
+		} 
+		
+		var $productImageIds = $productImageLi.find("input[name='productImageIds']");
+		var $productImageParameterTypes = $productImageLi.find("input[name='productImageParameterTypes']");
+		var $productImageUploadButton = $productImageLi.find(".productImageUploadButton");
+		$productImageIds.remove();
+		 if ($productImageParameterTypes.length > 0) {
+			$productImageParameterTypes.val("productImageFile");
+		} else {
+			$productImageUploadButton.append('<input type="hidden" name="productImageParameterTypes" value="productImageFile" />');
+		} 
+	});
+
+
+});
+
+</script>
+<div class="am-cf admin-main">
+ 
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">个人资料</strong> / <small>Personal information</small></div>
+    </div>
+
+    <hr/>
+
+    <div class="am-g">
+
+      <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
+        <div class="am-panel am-panel-default">
+          <div class="am-panel-bd">
+            <div class="am-g">
+              <div class="am-u-md-4">
+                <img class="am-img-circle am-img-thumbnail" name="admin.u_avatar_url" src="${loginUserImg!}" alt=""/>
+              </div>
+              <div class="am-u-md-8">
+                <p>你可以使用<a href="#">gravatar.com</a>提供的头像或者使用本地上传头像。 </p>
+                <form class="am-form"  action="${ctxPath}/center/saveimg"  method="post" enctype="multipart/form-data">
+                  <div class="am-form-group"  >
+                    <input type="file" id="user-pic" name="headimg">
+                    <p class="am-form-help">请选择要上传的文件...</p>
+                    <button type="submit" class="am-btn am-btn-primary am-btn-xs">保存</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<!--         <div class="am-panel am-panel-default"> -->
+<!--           <div class="am-panel-bd"> -->
+<!--             <div class="user-info"> -->
+<!--               <p>等级信息</p> -->
+<!--               <div class="am-progress am-progress-sm"> -->
+<!--                 <div class="am-progress-bar" style="width: 60%"></div> -->
+<!--               </div> -->
+<!--               <p class="user-info-order">当前等级：<strong>LV8</strong> 活跃天数：<strong>587</strong> 距离下一级别：<strong>160</strong></p> -->
+<!--             </div> -->
+<!--             <div class="user-info"> -->
+<!--               <p>信用信息</p> -->
+<!--               <div class="am-progress am-progress-sm"> -->
+<!--                 <div class="am-progress-bar am-progress-bar-success" style="width: 80%"></div> -->
+<!--               </div> -->
+<!--               <p class="user-info-order">信用等级：正常当前 信用积分：<strong>80</strong></p> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
+
+      </div>
+
+      <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
+        <form class="am-form am-form-horizontal" action="${base}/center/saveUser"  method="post" enctype="multipart/form-data">
+        <input type="hidden" name="admin.id" value="${admin.id}">
+          <% if(admin.role==1){%>
+		   <div class="am-form-group">
+            <label for="user-phone" class="am-u-sm-3 am-form-label">工厂名称 </label>
+            <div class="am-u-sm-9">
+              <input type="text" id="user-factory-name"  name="admin.factory_name" value="${admin.factory_name!}">
+            </div>
+          </div>  
+          
+             
+          <div class="am-form-group">
+            <label for="user-phone" class="am-u-sm-3 am-form-label">工厂图片 </label>
+            <div class="am-u-sm-9">
+            	<div class="productImageArea">
+							<div class="example"></div>
+							<a class="prev browse" href="javascript:void(0);" hidefocus="true"></a>
+							<div class="scrollable">
+								<ul class="items">
+									<%for(list in productImageList!){%>
+										<li>
+											<div class="productImageBox">
+												<div class="productImagePreview png">
+													<img src="${base}${list.thumbnailProductImagePath}" >
+												</div>
+												<div class="productImageOperate">
+													<a class="left" href="javascript: void(0);" alt="左移" hidefocus="true"></a>
+													<a class="right" href="javascript: void(0);" title="右移" hidefocus="true"></a>
+													<a class="delete" href="javascript: void(0);" title="删除" hidefocus="true"></a>
+												</div>
+												<a class="productImageUploadButton" href="javascript: void(0);">
+													<input type="hidden" name="productImageIds" value="${list.id}" />
+													<input type="hidden" name="productImageParameterTypes" value="productImageId" />
+													<%if (systemConfig.allowedUploadImageExtension != ""){%>
+														<input type="file" name="productImages" hidefocus="true" />
+														<div>上传新图片</div>
+													<%}else{%>
+														<div>不允许上传</div>
+													<%}%>
+												</a>
+											</div>
+										</li>
+									<%}%>
+									<li>
+										<div class="productImageBox">
+											<div class="productImagePreview png">暂无图片</div>
+											<div class="productImageOperate">
+												<a class="left" href="javascript: void(0);" alt="左移" hidefocus="true"></a>
+												<a class="right" href="javascript: void(0);" title="右移" hidefocus="true"></a>
+												<a class="delete" href="javascript: void(0);" title="删除" hidefocus="true"></a>
+											</div>
+											<a class="productImageUploadButton" href="javascript: void(0);">
+									
+												<%if (systemConfig.allowedUploadImageExtension != ""){%>
+													<input type="file" name="productImages" hidefocus="true" />
+													<div>上传新图片</div>
+												<%}else{%>
+													<div>不允许上传</div>
+												<%}%>
+											</a>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<a class="next browse" href="javascript:void(0);" hidefocus="true"></a>
+							<div class="blank"></div>
+							<%if (systemConfig.allowedUploadImageExtension != ""){%>
+								<span class="warnInfo"><span class="icon">&nbsp;</span>
+									<%if ((systemConfig.uploadLimit != 0) && (systemConfig.uploadLimit < 1024)){%>
+										小于${systemConfig.uploadLimit}KB
+									<%}else if (systemConfig.uploadLimit >= 1024){%>
+										小于${systemConfig.uploadLimit / 1024}MB
+									<%}%> 
+									<%for(list in strutil.split(systemConfig.allowedUploadImageExtension,@com.jfinalshop.bean.SystemConfig.EXTENSION_SEPARATOR)){%>
+										<%if (listLP.last){%>
+											*.${list};
+										<%}else{%>
+											*.${list}
+										<%}%>
+									<%}%>
+								</span>
+							<%}else{%>
+								<span class="warnInfo"><span class="icon">&nbsp;</span>系统设置不允许上传图片文件!</span>
+							<%}%>
+						</div>
+            </div>
+          </div>  
+          <%}else{%>
+          <div class="am-form-group">
+            <label for="user-name" class="am-u-sm-3 am-form-label">姓名</label>
+            <div class="am-u-sm-9">
+              <input type="text" id="admin.u_nickname" placeholder="姓名 / Name" name="admin.u_nickname" value="${admin.u_nickname!}">
+            </div>
+          </div>
+          
+           <div class="am-form-group">
+            <label for="user-name" class="am-u-sm-3 am-form-label">联络地址</label>
+            <div class="am-u-sm-9">
+              <input type="text" id="admin.u_address" placeholder="" name="admin.u_address" value="${admin.u_address!}">
+            </div>
+          </div>
+           <div class="am-form-group">
+            <label for="user-name" class="am-u-sm-3 am-form-label">电话</label>
+            <div class="am-u-sm-9">
+              <input type="text" id="admin.u_tel" placeholder="" name="admin.u_tel" value="${admin.u_tel!}">
+            </div>
+          </div>
+		  <%}%>
+         
+
+          
+
+
+          <% if(admin.role==1){%>
+		   <div class="am-form-group">
+            <label for="user-phone" class="am-u-sm-3 am-form-label">工厂地址 </label>
+            <div class="am-u-sm-9">
+              <input type="text" id="user-factory-address"  name="admin.u_address" value="${admin.u_address!}">
+            </div>
+          </div>  
+           <div class="am-form-group">
+            <label for="user-phone" class="am-u-sm-3 am-form-label">联系电话</label>
+            <div class="am-u-sm-9">
+              <input type="number" id="admin.u_tel" placeholder="输入你的电话号码 / Telephone" name="admin.u_tel" value="${admin.u_tel!}">
+            </div>
+          </div>
+           <div class="am-form-group">
+            <label for="user-phone" class="am-u-sm-3 am-form-label">接单类型 </label>
+            <div class="am-u-sm-9">
+              <input type="text" id="user-factory-address"  name="admin.u_address" value="${admin.u_address!}">
+            </div>
+          </div>   
+          <div class="am-form-group">
+            <label for="user-phone" class="am-u-sm-3 am-form-label">生产类别 </label>
+            <div class="am-u-sm-9">
+              <input type="text" id="user-factory-type"  name="admin.factory_type" value="${admin.factory_type!}">
+            </div>
+          </div>  
+          
+          
+       
+          
+           <div class="am-form-group">
+            <label for="user-phone" class="am-u-sm-3 am-form-label">生产品类 </label>
+            <div class="am-u-sm-9">
+              <input type="text" id="user-factory-address"  name="admin.u_address" value="${admin.u_address!}">
+            </div>
+          </div> 
+          
+<!--            <div class="am-form-group"> -->
+<!--             <label for="user-phone" class="am-u-sm-3 am-form-label">生产设备信息 </label> -->
+<!--             <div class="am-u-sm-9"> -->
+<!--               <input type="text" id="user-factory-address"  name="admin.u_address" value="${admin.u_address!}"> -->
+<!--             </div> -->
+<!--           </div>  -->
+          
+           
+          <%}%>
+          
+<!--           <div class="am-form-group"> -->
+<!--             <label for="user-intro" class="am-u-sm-3 am-form-label">简介 / Intro</label> -->
+<!--             <div class="am-u-sm-9"> -->
+<!--               <textarea  rows="5" id="intro" placeholder="输入个人简介" name="admin.u_intro" " >${admin.u_intro!}</textarea> -->
+<!--                 <input type="text" id="user-factory-address"  name="admin.u_intro" value="${admin.u_intro!}""> -->
+<!--               <small>250字以内写出你的一生...</small> -->
+<!--             </div> -->
+<!--           </div> -->
+		
+         		
+          <div class="am-form-group">
+            <div class="am-u-sm-9 am-u-sm-push-3">
+              <button type="submit" id="sub" class="am-btn am-btn-primary">保存修改</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- content end -->
+
+
+<a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+
+<footer>
+  <hr>
+  <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+</footer>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="${ctxPath}/assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+
+<script src="${ctxPath}/assets/js/amazeui.min.js"></script>
+
+<script src="${ctxPath}/assets/js/app.js"></script>
+</body>
+</html>
