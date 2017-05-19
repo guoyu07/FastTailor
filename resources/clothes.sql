@@ -1,25 +1,26 @@
 /*
-SQLyog Ultimate v11.24 (32 bit)
-MySQL - 5.6.17 : Database - clothes
-*********************************************************************
-*/
+ Navicat Premium Data Transfer
 
-/*!40101 SET NAMES utf8 */;
+ Source Server         : local
+ Source Server Type    : MySQL
+ Source Server Version : 50712
+ Source Host           : localhost
+ Source Database       : clothes
 
-/*!40101 SET SQL_MODE=''*/;
+ Target Server Type    : MySQL
+ Target Server Version : 50712
+ File Encoding         : utf-8
 
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`clothes` /*!40100 DEFAULT CHARACTER SET utf8 */;
+ Date: 05/19/2017 16:54:41 PM
+*/
 
-USE `clothes`;
+SET NAMES utf8;
+SET FOREIGN_KEY_CHECKS = 0;
 
-/*Table structure for table `admin` */
-
+-- ----------------------------
+--  Table structure for `admin`
+-- ----------------------------
 DROP TABLE IF EXISTS `admin`;
-
 CREATE TABLE `admin` (
   `id` varchar(32) NOT NULL,
   `u_username` varchar(255) NOT NULL,
@@ -50,28 +51,34 @@ CREATE TABLE `admin` (
   PRIMARY KEY (`id`,`u_pwd`,`factory_type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `admin` */
+-- ----------------------------
+--  Records of `admin`
+-- ----------------------------
+BEGIN;
+INSERT INTO `admin` VALUES ('AJ88099', '123456', '123456', null, '2017-05-18 17:34:31', '0:0:0:0:0:0:0:1', '2017-05-18 17:34:31', '2', '2016-03-17 22:59:02', null, 'default', null, '/upload/image/201705/GX47694_small.jpg', null, null, null, null, null, null, null, b'1', null, null, b'1', null, null), ('YU16179', 'kuaicaifeng', '88888888', '福建泉州', '2017-05-18 17:28:35', '0:0:0:0:0:0:0:1', '2017-05-18 17:28:35', '1', '2016-03-17 22:56:22', 'XX针织厂', '加工', null, '/upload/image/201705/DW50417_small.jpg', null, null, '15505907667', null, '[\n	{\n		\"bigProductImagePath\":\"/upload/image/201705/GT16030_big.jpg\",\n		\"id\":\"GT16030\",\n		\"smallProductImagePath\":\"/upload/image/201705/GT16030_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201705/GT16030.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201705/GT16030_thumbnail.jpg\"\n	},\n	{\n		\"bigProductImagePath\":\"/upload/image/201705/KX58279_big.jpg\",\n		\"id\":\"KX58279\",\n		\"smallProductImagePath\":\"/upload/image/201705/KX58279_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201705/KX58279.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201705/KX58279_thumbnail.jpg\"\n	}\n]', null, null, b'1', '99', '99', b'1', '{\n	\"conditions\":\"男装童装女装T恤卫衣马甲丝绸化纤尼龙棉皮草真丝粗呢麻\",\n	\"max\":99\n}', '[\n	{\n		\"createDate\":1458230252136,\n		\"deal\":1,\n		\"id\":\"AF92235\"\n	},\n	{\n		\"createDate\":1458266285573,\n		\"deal\":1,\n		\"id\":\"RW65299\"\n	},\n	{\n		\"createDate\":1458266495655,\n		\"deal\":1,\n		\"id\":\"XM63824\"\n	},\n	{\n		\"createDate\":1458312846827,\n		\"deal\":1,\n		\"id\":\"JB50920\"\n	},\n	{\n		\"createDate\":1458312953907,\n		\"deal\":1,\n		\"id\":\"WV44505\"\n	},\n	{\n		\"createDate\":1495087610883,\n		\"deal\":1,\n		\"id\":\"AG41744\"\n	},\n	{\n		\"createDate\":1495087877181,\n		\"deal\":1,\n		\"id\":\"YS15437\"\n	},\n	{\n		\"createDate\":1495092418496,\n		\"deal\":1,\n		\"id\":\"IK97937\"\n	},\n	{\n		\"createDate\":1495095007448,\n		\"deal\":1,\n		\"id\":\"BA69552\"\n	}\n]');
+COMMIT;
 
-insert  into `admin`(`id`,`u_username`,`u_pwd`,`u_address`,`loginDate`,`loginIp`,`modifyDate`,`role`,`createDate`,`factory_name`,`factory_type`,`factory_tel`,`u_avatar_url`,`u_nickname`,`u_email`,`u_tel`,`u_intro`,`factory_img`,`factory_peo`,`factory_device`,`factory_acc_type`,`maxNumber`,`maxItem`,`isAccept`,`conditionKey`,`sending`) values ('AJ88099','123456','123456',NULL,'2016-03-21 00:09:37','0:0:0:0:0:0:0:1','2016-03-21 00:09:37',2,'2016-03-17 22:59:02',NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,'',NULL,NULL),('YU16179','kuaicaifeng','88888888','福建泉州','2016-03-20 23:42:35','0:0:0:0:0:0:0:1','2016-03-20 23:42:35',1,'2016-03-17 22:56:22','XX针织厂','default',NULL,'/upload/image/201603/GQ17764_small.jpg',NULL,NULL,'12213123131',NULL,NULL,NULL,NULL,'',20,4,'','{\n	\"conditions\":\"男装童装女装T恤卫衣马甲丝绸化纤尼龙棉皮草真丝粗呢麻\",\n	\"max\":20\n}','[\n	{\n		\"createDate\":1458230252136,\n		\"deal\":1,\n		\"id\":\"AF92235\"\n	},\n	{\n		\"createDate\":1458266285573,\n		\"deal\":1,\n		\"id\":\"RW65299\"\n	},\n	{\n		\"createDate\":1458266495655,\n		\"deal\":1,\n		\"id\":\"XM63824\"\n	},\n	{\n		\"createDate\":1458312846827,\n		\"deal\":1,\n		\"id\":\"JB50920\"\n	},\n	{\n		\"createDate\":1458312953907,\n		\"deal\":1,\n		\"id\":\"WV44505\"\n	}\n]');
-
-/*Table structure for table `admin_role` */
-
+-- ----------------------------
+--  Table structure for `admin_role`
+-- ----------------------------
 DROP TABLE IF EXISTS `admin_role`;
-
 CREATE TABLE `admin_role` (
   `adminSet_id` varchar(32) NOT NULL,
   `roleSet_id` varchar(32) NOT NULL,
   PRIMARY KEY (`adminSet_id`,`roleSet_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `admin_role` */
+-- ----------------------------
+--  Records of `admin_role`
+-- ----------------------------
+BEGIN;
+INSERT INTO `admin_role` VALUES ('1', '1');
+COMMIT;
 
-insert  into `admin_role`(`adminSet_id`,`roleSet_id`) values ('1','1');
-
-/*Table structure for table `advice` */
-
+-- ----------------------------
+--  Table structure for `advice`
+-- ----------------------------
 DROP TABLE IF EXISTS `advice`;
-
 CREATE TABLE `advice` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -81,14 +88,17 @@ CREATE TABLE `advice` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
-/*Data for the table `advice` */
+-- ----------------------------
+--  Records of `advice`
+-- ----------------------------
+BEGIN;
+INSERT INTO `advice` VALUES ('1', '241', '2412@qq.com', null, 'sddwaf'), ('2', '123', '123@qq.com', null, '123124'), ('3', '234', 'qwq@qq.com', null, '23312'), ('4', '陈润发', 'chenrunfa@qq.com', null, 'safafasfasf'), ('5', 'w', 'wq@qq.com', null, '231'), ('6', 'asdas', '@', null, 's'), ('7', '1231', '124@', null, 'da'), ('8', '12312', '12324', null, '123'), ('9', '12', '12', null, '12'), ('10', 'chenrunfa', 'chenrunfa@qq.com', null, 'ceshi');
+COMMIT;
 
-insert  into `advice`(`id`,`name`,`email`,`creatDate`,`context`) values (1,'241','2412@qq.com',NULL,'sddwaf'),(2,'123','123@qq.com',NULL,'123124'),(3,'234','qwq@qq.com',NULL,'23312'),(4,'陈润发','chenrunfa@qq.com',NULL,'safafasfasf'),(5,'w','wq@qq.com',NULL,'231'),(6,'asdas','@',NULL,'s'),(7,'1231','124@',NULL,'da'),(8,'12312','12324',NULL,'123'),(9,'12','12',NULL,'12'),(10,'chenrunfa','chenrunfa@qq.com',NULL,'ceshi');
-
-/*Table structure for table `confirmitems` */
-
+-- ----------------------------
+--  Table structure for `confirmitems`
+-- ----------------------------
 DROP TABLE IF EXISTS `confirmitems`;
-
 CREATE TABLE `confirmitems` (
   `id` varchar(40) NOT NULL,
   `itemid` varchar(40) NOT NULL,
@@ -99,14 +109,17 @@ CREATE TABLE `confirmitems` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `confirmitems` */
+-- ----------------------------
+--  Records of `confirmitems`
+-- ----------------------------
+BEGIN;
+INSERT INTO `confirmitems` VALUES ('VI22999', 'XM63824', '10000', '2016-03-18 23:27:38', 'YU16179', '123456');
+COMMIT;
 
-insert  into `confirmitems`(`id`,`itemid`,`cfprice`,`cfDate`,`fid`,`fromId`) values ('VI22999','XM63824',10000,'2016-03-18 23:27:38','YU16179','123456');
-
-/*Table structure for table `items` */
-
+-- ----------------------------
+--  Table structure for `items`
+-- ----------------------------
 DROP TABLE IF EXISTS `items`;
-
 CREATE TABLE `items` (
   `id` varchar(255) NOT NULL,
   `c_userid` varchar(40) NOT NULL,
@@ -135,56 +148,68 @@ CREATE TABLE `items` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `items` */
+-- ----------------------------
+--  Records of `items`
+-- ----------------------------
+BEGIN;
+INSERT INTO `items` VALUES ('AF12806', '123456', '男装', 'T恤', '[\n	{\n		\"bigProductImagePath\":\"/upload/image/201705/WA92468_big.jpg\",\n		\"id\":\"WA92468\",\n		\"smallProductImagePath\":\"/upload/image/201705/WA92468_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201705/WA92468.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201705/WA92468_thumbnail.jpg\"\n	},\n	{\n		\"bigProductImagePath\":\"/upload/image/201705/OH26310_big.jpg\",\n		\"id\":\"OH26310\",\n		\"smallProductImagePath\":\"/upload/image/201705/OH26310_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201705/OH26310.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201705/OH26310_thumbnail.jpg\"\n	}\n]', '[\n	{\n		\"bigProductImagePath\":\"/upload/image/201705/MT15613_big.jpg\",\n		\"id\":\"MT15613\",\n		\"smallProductImagePath\":\"/upload/image/201705/MT15613_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201705/MT15613.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201705/MT15613_thumbnail.jpg\"\n	}\n]', '需要如图几件服装，报价请尽快给出！谢谢', null, '化纤', '1', '1', '1', '1', '2017-05-18 17:21:00', '/html/product_content/201705/KW88034.html', b'0', b'0', null, null, b'0', null, null, b'1', '2017-05-26 00:00:00'), ('AF92235', '123456', '男装', 'T恤', '[\n	{\n		\"bigProductImagePath\":\"/upload/image/201603/UB23451_big.jpg\",\n		\"id\":\"UB23451\",\n		\"smallProductImagePath\":\"/upload/image/201603/UB23451_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201603/UB23451.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201603/UB23451_thumbnail.jpg\"\n	}\n]', '[\n	{\n		\"bigProductImagePath\":\"/upload/image/201603/GI10587_big.jpg\",\n		\"id\":\"GI10587\",\n		\"smallProductImagePath\":\"/upload/image/201603/GI10587_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201603/GI10587.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201603/GI10587_thumbnail.jpg\"\n	}\n]', 'ceshi', null, '丝绸', '1', '0', '0', '0', '2016-03-17 23:00:44', '/html/product_content/201603/MV20246.html', b'0', b'1', null, null, b'0', '2016-03-17 23:57:32', '[\n	{\n		\"id\":\"AF92235\",\n		\"price\":\"1231231\",\n		\"time\":1495095037158\n	}\n]', b'1', '2016-03-23 00:00:00'), ('AG41744', '123456', '男装', 'T恤', '[\n	{\n		\"bigProductImagePath\":\"/upload/image/201705/EX90724_big.jpg\",\n		\"id\":\"EX90724\",\n		\"smallProductImagePath\":\"/upload/image/201705/EX90724_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201705/EX90724.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201705/EX90724_thumbnail.jpg\"\n	}\n]', '[\n	{\n		\"bigProductImagePath\":\"/upload/image/201705/VH21423_big.jpg\",\n		\"id\":\"VH21423\",\n		\"smallProductImagePath\":\"/upload/image/201705/VH21423_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201705/VH21423.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201705/VH21423_thumbnail.jpg\"\n	}\n]', '测试', null, '丝绸', '1', '1', '1', '1', '2017-05-18 14:05:54', '/html/product_content/201705/DT33340.html', b'0', b'0', null, null, b'1', '2017-05-18 14:06:51', null, b'1', '2017-05-25 00:00:00'), ('BA69552', '123456', '男装', '卫衣', '[\n	{\n		\"bigProductImagePath\":\"/upload/image/201705/OL17598_big.jpg\",\n		\"id\":\"OL17598\",\n		\"smallProductImagePath\":\"/upload/image/201705/OL17598_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201705/OL17598.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201705/OL17598_thumbnail.jpg\"\n	}\n]', null, 'dddd', null, '化纤', '1', '1', '0', '0', '2017-05-18 16:10:03', '/html/product_content/201705/HK04425.html', b'0', b'0', null, null, b'0', '2017-05-18 16:10:07', null, b'1', '2017-05-26 00:00:00'), ('IK97937', '123456', '童装', '卫衣', '[\n	{\n		\"bigProductImagePath\":\"/upload/image/201705/CN76514_big.jpg\",\n		\"id\":\"CN76514\",\n		\"smallProductImagePath\":\"/upload/image/201705/CN76514_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201705/CN76514.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201705/CN76514_thumbnail.jpg\"\n	}\n]', null, 'dd', null, '尼龙', '1', '0', '0', '0', '2017-05-18 15:26:54', '/html/product_content/201705/RQ13810.html', b'0', b'0', null, null, b'0', '2017-05-18 15:26:58', null, b'1', '2017-05-25 00:00:00'), ('IX47547', '123456', '童装', '卫衣', '[\n	{\n		\"bigProductImagePath\":\"/upload/image/201705/QK09249_big.jpg\",\n		\"id\":\"QK09249\",\n		\"smallProductImagePath\":\"/upload/image/201705/QK09249_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201705/QK09249.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201705/QK09249_thumbnail.jpg\"\n	}\n]', '[\n	{\n		\"bigProductImagePath\":\"/upload/image/201705/OE96085_big.jpg\",\n		\"id\":\"OE96085\",\n		\"smallProductImagePath\":\"/upload/image/201705/OE96085_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201705/OE96085.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201705/OE96085_thumbnail.jpg\"\n	}\n]', '数据库还好', null, '皮草', '0', '2', '2', '0', '2017-05-18 17:04:51', '/html/product_content/201705/GX30659.html', b'0', b'0', null, null, b'0', null, null, b'0', '2017-05-20 00:00:00'), ('JB50920', '123456', '童装', 'T恤', null, null, null, null, '丝绸', '2', '1', '1', '0', '2016-03-18 22:54:02', '/html/product_content/201603/YI53849.html', b'0', b'0', null, null, b'0', '2016-03-18 22:54:07', null, b'1', '2016-04-22 00:00:00'), ('NG24485', '123456', '童装', 'T恤', null, null, null, null, '尼龙', '1', '1', '0', '0', '2016-03-18 18:02:53', '/html/product_content/201603/NQ84930.html', b'0', b'0', null, null, b'0', null, null, b'1', '2099-12-31 12:00:00'), ('RW65299', '123456', '男装', 'T恤', '[\n	{\n		\"bigProductImagePath\":\"/upload/image/201603/QK39204_big.jpg\",\n		\"id\":\"QK39204\",\n		\"smallProductImagePath\":\"/upload/image/201603/QK39204_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201603/QK39204.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201603/QK39204_thumbnail.jpg\"\n	}\n]', '[\n	{\n		\"bigProductImagePath\":\"/upload/image/201603/PF96972_big.jpg\",\n		\"id\":\"PF96972\",\n		\"smallProductImagePath\":\"/upload/image/201603/PF96972_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201603/PF96972.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201603/PF96972_thumbnail.jpg\"\n	}\n]', null, null, '丝绸', '1', '0', '0', '0', '2016-03-17 23:56:44', '/html/product_content/201603/VH02270.html', b'0', b'1', null, null, b'0', '2016-03-18 09:58:06', '[\n	{\n		\"id\":\"RW65299\",\n		\"price\":\"13123\",\n		\"time\":1458315104984\n	}\n]', b'1', '2016-03-18 00:00:00'), ('SY91683', '123456', '童装', '卫衣', '[\n	{\n		\"bigProductImagePath\":\"/upload/image/201705/OX41245_big.jpg\",\n		\"id\":\"OX41245\",\n		\"smallProductImagePath\":\"/upload/image/201705/OX41245_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201705/OX41245.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201705/OX41245_thumbnail.jpg\"\n	}\n]', '[\n	{\n		\"bigProductImagePath\":\"/upload/image/201705/CJ08149_big.jpg\",\n		\"id\":\"CJ08149\",\n		\"smallProductImagePath\":\"/upload/image/201705/CJ08149_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201705/CJ08149.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201705/CJ08149_thumbnail.jpg\"\n	}\n]', 'dd', null, '棉', '1', '0', '1', '0', '2017-05-18 17:04:18', '/html/product_content/201705/DV32418.html', b'0', b'0', null, null, b'0', null, null, b'0', '2017-05-19 00:00:00'), ('VX98154', '123456', '童装', 'T恤', null, null, null, null, '尼龙', '1', '1', '0', '0', '2016-03-18 18:04:17', '/html/product_content/201603/DV27166.html', b'0', b'0', null, null, b'0', null, null, b'1', '2099-12-31 12:00:00'), ('WV44505', '123456', '男装', 'T恤', null, null, null, null, '丝绸', '2', '2', '0', '0', '2016-03-18 22:55:45', '/html/product_content/201603/LJ08207.html', b'1', b'1', null, null, b'1', '2016-03-18 22:55:54', '[\n	{\n		\"id\":\"WV44505\",\n		\"price\":\"123322\",\n		\"time\":1458313008252\n	}\n]', b'1', '2016-04-22 00:00:00'), ('XM63824', '123456', '男装', '卫衣', null, null, null, null, '化纤', '1', '0', '0', '0', '2016-03-18 10:01:23', '/html/product_content/201603/WP20943.html', b'1', b'1', null, null, b'0', '2016-03-18 10:01:36', '[\n	{\n		\"id\":\"XM63824\",\n		\"price\":\"10000\",\n		\"time\":1458266548484\n	}\n]', b'1', '2016-03-23 00:00:00'), ('YA66269', '123456', '男装', '卫衣', '[\n	{\n		\"bigProductImagePath\":\"/upload/image/201705/GX19333_big.jpg\",\n		\"id\":\"GX19333\",\n		\"smallProductImagePath\":\"/upload/image/201705/GX19333_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201705/GX19333.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201705/GX19333_thumbnail.jpg\"\n	}\n]', '[\n	{\n		\"bigProductImagePath\":\"/upload/image/201705/SB84524_big.jpg\",\n		\"id\":\"SB84524\",\n		\"smallProductImagePath\":\"/upload/image/201705/SB84524_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201705/SB84524.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201705/SB84524_thumbnail.jpg\"\n	}\n]', '大幅度发', null, '化纤', '1', '1', '2', '2', '2017-05-18 14:10:07', '/html/product_content/201705/BO39744.html', b'0', b'0', null, null, b'0', null, null, b'1', '2017-05-23 00:00:00'), ('YF46423', '123456', '男装', '卫衣', '[\n	{\n		\"bigProductImagePath\":\"/upload/image/201705/ZO71122_big.jpg\",\n		\"id\":\"ZO71122\",\n		\"smallProductImagePath\":\"/upload/image/201705/ZO71122_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201705/ZO71122.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201705/ZO71122_thumbnail.jpg\"\n	}\n]', null, null, null, '化纤', '1', '1', '2', '2', '2017-05-18 14:09:49', '/html/product_content/201705/UW66956.html', b'0', b'0', null, null, b'0', null, null, b'1', null), ('YS15437', '123456', '男装', 'T恤', '[\n	{\n		\"bigProductImagePath\":\"/upload/image/201705/OR93140_big.jpg\",\n		\"id\":\"OR93140\",\n		\"smallProductImagePath\":\"/upload/image/201705/OR93140_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201705/OR93140.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201705/OR93140_thumbnail.jpg\"\n	}\n]', '[\n	{\n		\"bigProductImagePath\":\"/upload/image/201705/XS84548_big.jpg\",\n		\"id\":\"XS84548\",\n		\"smallProductImagePath\":\"/upload/image/201705/XS84548_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201705/XS84548.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201705/XS84548_thumbnail.jpg\"\n	}\n]', '测试', null, '丝绸', '3', '2', '2', '2', '2017-05-18 14:11:06', '/html/product_content/201705/QF72043.html', b'0', b'0', null, null, b'0', '2017-05-18 14:11:17', null, b'1', '2017-05-27 00:00:00');
+COMMIT;
 
-insert  into `items`(`id`,`c_userid`,`c_type`,`c_category`,`c_clothe_img`,`c_pattern_img`,`c_describe`,`c_other`,`c_isbeoffer`,`s`,`m`,`l`,`xl`,`createDate`,`htmlFilePath`,`c_payment`,`c_state`,`replyDate`,`modifyDate`,`isDelete`,`shortDate`,`priceList`,`c_decide`,`lastTime`) values ('AF92235','123456','男装','T恤','[\n	{\n		\"bigProductImagePath\":\"/upload/image/201603/UB23451_big.jpg\",\n		\"id\":\"UB23451\",\n		\"smallProductImagePath\":\"/upload/image/201603/UB23451_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201603/UB23451.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201603/UB23451_thumbnail.jpg\"\n	}\n]','[\n	{\n		\"bigProductImagePath\":\"/upload/image/201603/GI10587_big.jpg\",\n		\"id\":\"GI10587\",\n		\"smallProductImagePath\":\"/upload/image/201603/GI10587_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201603/GI10587.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201603/GI10587_thumbnail.jpg\"\n	}\n]','ceshi',NULL,'丝绸',1,0,0,0,'2016-03-17 23:00:44','/html/product_content/201603/MV20246.html','\0','\0',NULL,NULL,'\0','2016-03-17 23:57:32',NULL,'','2016-03-23 00:00:00'),('JB50920','123456','童装','T恤',NULL,NULL,NULL,NULL,'丝绸',2,1,1,0,'2016-03-18 22:54:02','/html/product_content/201603/YI53849.html','\0','\0',NULL,NULL,'\0','2016-03-18 22:54:07',NULL,'','2016-04-22 00:00:00'),('NG24485','123456','童装','T恤',NULL,NULL,NULL,NULL,'尼龙',1,1,0,0,'2016-03-18 18:02:53','/html/product_content/201603/NQ84930.html','\0','\0',NULL,NULL,'\0',NULL,NULL,'','2099-12-31 12:00:00'),('RW65299','123456','男装','T恤','[\n	{\n		\"bigProductImagePath\":\"/upload/image/201603/QK39204_big.jpg\",\n		\"id\":\"QK39204\",\n		\"smallProductImagePath\":\"/upload/image/201603/QK39204_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201603/QK39204.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201603/QK39204_thumbnail.jpg\"\n	}\n]','[\n	{\n		\"bigProductImagePath\":\"/upload/image/201603/PF96972_big.jpg\",\n		\"id\":\"PF96972\",\n		\"smallProductImagePath\":\"/upload/image/201603/PF96972_small.jpg\",\n		\"sourceProductImagePath\":\"/upload/image/201603/PF96972.jpeg\",\n		\"thumbnailProductImagePath\":\"/upload/image/201603/PF96972_thumbnail.jpg\"\n	}\n]',NULL,NULL,'丝绸',1,0,0,0,'2016-03-17 23:56:44','/html/product_content/201603/VH02270.html','\0','',NULL,NULL,'\0','2016-03-18 09:58:06','[\n	{\n		\"id\":\"RW65299\",\n		\"price\":\"13123\",\n		\"time\":1458315104984\n	}\n]','','2016-03-18 00:00:00'),('VX98154','123456','童装','T恤',NULL,NULL,NULL,NULL,'尼龙',1,1,0,0,'2016-03-18 18:04:17','/html/product_content/201603/DV27166.html','\0','\0',NULL,NULL,'\0',NULL,NULL,'','2099-12-31 12:00:00'),('WV44505','123456','男装','T恤',NULL,NULL,NULL,NULL,'丝绸',2,2,0,0,'2016-03-18 22:55:45','/html/product_content/201603/LJ08207.html','','',NULL,NULL,'\0','2016-03-18 22:55:54','[\n	{\n		\"id\":\"WV44505\",\n		\"price\":\"123322\",\n		\"time\":1458313008252\n	}\n]','','2016-04-22 00:00:00'),('XM63824','123456','男装','卫衣',NULL,NULL,NULL,NULL,'化纤',1,0,0,0,'2016-03-18 10:01:23','/html/product_content/201603/WP20943.html','','',NULL,NULL,'\0','2016-03-18 10:01:36','[\n	{\n		\"id\":\"XM63824\",\n		\"price\":\"10000\",\n		\"time\":1458266548484\n	}\n]','','2016-03-23 00:00:00');
-
-/*Table structure for table `itemscategory` */
-
+-- ----------------------------
+--  Table structure for `itemscategory`
+-- ----------------------------
 DROP TABLE IF EXISTS `itemscategory`;
-
 CREATE TABLE `itemscategory` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(25) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
-/*Data for the table `itemscategory` */
+-- ----------------------------
+--  Records of `itemscategory`
+-- ----------------------------
+BEGIN;
+INSERT INTO `itemscategory` VALUES ('1', 'T恤'), ('2', '卫衣'), ('3', '马甲');
+COMMIT;
 
-insert  into `itemscategory`(`id`,`name`) values (1,'T恤'),(2,'卫衣'),(3,'马甲');
-
-/*Table structure for table `itemssoft` */
-
+-- ----------------------------
+--  Table structure for `itemssoft`
+-- ----------------------------
 DROP TABLE IF EXISTS `itemssoft`;
-
 CREATE TABLE `itemssoft` (
   `id` int(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(25) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
-/*Data for the table `itemssoft` */
+-- ----------------------------
+--  Records of `itemssoft`
+-- ----------------------------
+BEGIN;
+INSERT INTO `itemssoft` VALUES ('1', '丝绸'), ('2', '棉'), ('3', '尼龙'), ('4', '麻'), ('5', '化纤'), ('6', '皮草'), ('7', '真丝'), ('8', '粗呢');
+COMMIT;
 
-insert  into `itemssoft`(`id`,`name`) values (1,'丝绸'),(2,'棉'),(3,'尼龙'),(4,'麻'),(5,'化纤'),(6,'皮草'),(7,'真丝'),(8,'粗呢');
-
-/*Table structure for table `itemsstyle` */
-
+-- ----------------------------
+--  Table structure for `itemsstyle`
+-- ----------------------------
 DROP TABLE IF EXISTS `itemsstyle`;
-
 CREATE TABLE `itemsstyle` (
   `id` int(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(25) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
-/*Data for the table `itemsstyle` */
+-- ----------------------------
+--  Records of `itemsstyle`
+-- ----------------------------
+BEGIN;
+INSERT INTO `itemsstyle` VALUES ('1', '男装'), ('2', '童装'), ('3', '女装');
+COMMIT;
 
-insert  into `itemsstyle`(`id`,`name`) values (1,'男装'),(2,'童装'),(3,'女装');
-
-/*Table structure for table `log` */
-
+-- ----------------------------
+--  Table structure for `log`
+-- ----------------------------
 DROP TABLE IF EXISTS `log`;
-
 CREATE TABLE `log` (
   `id` varchar(32) DEFAULT NULL,
   `createDate` datetime DEFAULT NULL,
@@ -197,12 +222,10 @@ CREATE TABLE `log` (
   `operator` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `log` */
-
-/*Table structure for table `logconfig` */
-
+-- ----------------------------
+--  Table structure for `logconfig`
+-- ----------------------------
 DROP TABLE IF EXISTS `logconfig`;
-
 CREATE TABLE `logconfig` (
   `id` varchar(32) DEFAULT NULL,
   `createDate` datetime DEFAULT NULL,
@@ -213,12 +236,10 @@ CREATE TABLE `logconfig` (
   `operationName` varchar(255) DEFAULT NULL COMMENT '操作名称'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `logconfig` */
-
-/*Table structure for table `menu` */
-
+-- ----------------------------
+--  Table structure for `menu`
+-- ----------------------------
 DROP TABLE IF EXISTS `menu`;
-
 CREATE TABLE `menu` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -233,14 +254,17 @@ CREATE TABLE `menu` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
 
-/*Data for the table `menu` */
+-- ----------------------------
+--  Records of `menu`
+-- ----------------------------
+BEGIN;
+INSERT INTO `menu` VALUES ('1', '询价', null, 'fa-tasks', b'1', '0', '0', null, null, '2'), ('3', '立即询价', '/items', '', b'1', '1', '1', null, null, '2'), ('5', '历史询价', '/items/list', null, b'1', '2', '1', null, null, '2'), ('7', '新的消息', '', 'fa-envelope-o', b'1', '1', '0', null, null, '2'), ('8', '寻单', '', 'fa-tasks', b'1', '0', '0', null, null, '1'), ('9', '新的消息', '', 'fa-envelope-o', b'1', '2', '0', null, null, '1'), ('11', '新的订单', '/items/newConfirmed', null, b'1', '1', '9', null, null, '1'), ('13', '询价历史', '/items/info', null, b'1', '2', '9', null, null, '1'), ('15', '新的报价', '/items/getAllPriced', '', b'1', '1', '7', null, null, '2'), ('17', '个人中心', null, 'fa-user', b'1', '0', '0', null, null, '0'), ('19', '个人资料', '/center/user', null, b'1', '1', '17', null, null, '0'), ('21', '交易记录', '/center/center_trade', '', b'1', '2', '17', null, null, '0'), ('25', '寻找订单', '/items/getOneItem', null, b'1', '1', '8', null, null, '1'), ('27', '接单管理', '/center/setting', '', b'1', '3', '17', null, null, '1'), ('31', '注销', '', ' fa-sign-out', b'1', '1', '0', null, null, '0'), ('33', '修改密码', '/admin/error', '', b'1', '2', '31', null, null, '0'), ('35', '退出', '/login/logout', null, b'1', '0', '31', null, null, '0'), ('37', '联系我们', '', 'fa-paper-plane-o', b'1', '0', '0', null, null, '0'), ('39', '联系方式', '/advice/showinfo', null, b'1', '1', '37', null, null, '0'), ('41', '您的建议', '/advice/advice', null, b'1', '2', '37', null, null, '0');
+COMMIT;
 
-insert  into `menu`(`id`,`name`,`url`,`icon`,`isEnabled`,`orderList`,`parent_id`,`createDate`,`modifyDate`,`role`) values (1,'询价',NULL,'fa-tasks','',0,0,NULL,NULL,2),(3,'立即询价','/items','','',1,1,NULL,NULL,2),(5,'历史询价','/items/list',NULL,'',2,1,NULL,NULL,2),(7,'新的消息','','fa-envelope-o','',1,0,NULL,NULL,2),(8,'寻单','','fa-tasks','',0,0,NULL,NULL,1),(9,'新的消息','','fa-envelope-o','',2,0,NULL,NULL,1),(11,'新的订单','/items/newConfirmed',NULL,'',1,9,NULL,NULL,1),(13,'询价历史','/items/info',NULL,'',2,9,NULL,NULL,1),(15,'新的报价','/items/getAllPriced','','',1,7,NULL,NULL,2),(17,'个人中心',NULL,'fa-user','',0,0,NULL,NULL,0),(19,'个人资料','/center/user',NULL,'',1,17,NULL,NULL,0),(21,'交易记录','/center/center_trade','','',2,17,NULL,NULL,0),(25,'寻找订单','/items/getOneItem',NULL,'',1,8,NULL,NULL,1),(27,'接单管理','/center/setting','','',3,17,NULL,NULL,1),(31,'注销','',' fa-sign-out','',1,0,NULL,NULL,0),(33,'修改密码','/admin/error','','',2,31,NULL,NULL,0),(35,'退出','/login/logout',NULL,'',0,31,NULL,NULL,0),(37,'联系我们','','fa-paper-plane-o','',0,0,NULL,NULL,0),(39,'联系方式','/advice/showinfo',NULL,'',1,37,NULL,NULL,0),(41,'您的建议','/advice/advice',NULL,'',2,37,NULL,NULL,0);
-
-/*Table structure for table `price` */
-
+-- ----------------------------
+--  Table structure for `price`
+-- ----------------------------
 DROP TABLE IF EXISTS `price`;
-
 CREATE TABLE `price` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `price` bigint(10) NOT NULL,
@@ -253,16 +277,19 @@ CREATE TABLE `price` (
   `msg` varchar(255) DEFAULT NULL,
   `ownerid` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
 
-/*Data for the table `price` */
+-- ----------------------------
+--  Records of `price`
+-- ----------------------------
+BEGIN;
+INSERT INTO `price` VALUES ('34', '10000', '2016-03-18 10:02:28', null, 'XX针织厂', 'XM63824', 'YU16179', null, '测试', '123456'), ('35', '123322', '2016-03-18 22:56:48', null, 'XX针织厂', 'WV44505', 'YU16179', null, '12313', '123456'), ('36', '13123', '2016-03-18 23:31:45', null, 'XX针织厂', 'RW65299', 'YU16179', null, '', '123456'), ('37', '1231231', '2017-05-18 16:10:37', null, 'XX针织厂', 'AF92235', 'YU16179', null, '123', '123456');
+COMMIT;
 
-insert  into `price`(`id`,`price`,`replyDate`,`factorytel`,`name`,`itemid`,`factoryid`,`itemtel`,`msg`,`ownerid`) values (34,10000,'2016-03-18 10:02:28',NULL,'XX针织厂','XM63824','YU16179',NULL,'测试','123456'),(35,123322,'2016-03-18 22:56:48',NULL,'XX针织厂','WV44505','YU16179',NULL,'12313','123456'),(36,13123,'2016-03-18 23:31:45',NULL,'XX针织厂','RW65299','YU16179',NULL,'','123456');
-
-/*Table structure for table `role` */
-
+-- ----------------------------
+--  Table structure for `role`
+-- ----------------------------
 DROP TABLE IF EXISTS `role`;
-
 CREATE TABLE `role` (
   `id` varchar(32) NOT NULL,
   `createDate` datetime DEFAULT NULL,
@@ -274,26 +301,27 @@ CREATE TABLE `role` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `role` */
-
-/*Table structure for table `role_resource` */
-
+-- ----------------------------
+--  Table structure for `role_resource`
+-- ----------------------------
 DROP TABLE IF EXISTS `role_resource`;
-
 CREATE TABLE `role_resource` (
   `roleSet_id` varchar(32) NOT NULL,
   `resourceSet_id` varchar(32) NOT NULL,
   PRIMARY KEY (`roleSet_id`,`resourceSet_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `role_resource` */
+-- ----------------------------
+--  Records of `role_resource`
+-- ----------------------------
+BEGIN;
+INSERT INTO `role_resource` VALUES ('1', '1');
+COMMIT;
 
-insert  into `role_resource`(`roleSet_id`,`resourceSet_id`) values ('1','1');
-
-/*Table structure for table `size` */
-
+-- ----------------------------
+--  Table structure for `size`
+-- ----------------------------
 DROP TABLE IF EXISTS `size`;
-
 CREATE TABLE `size` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `s_l` int(10) DEFAULT NULL,
@@ -303,9 +331,4 @@ CREATE TABLE `size` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `size` */
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+SET FOREIGN_KEY_CHECKS = 1;

@@ -1,11 +1,12 @@
 #快 裁 缝
- 致力于改善服装原材料提供方和需求方的供需关系。  
+
+致力于改善服装原材料提供方和需求方的供需关系。  
   
 ---
-##网站首页
+# 网站首页
 ![](http://o6qknsods.bkt.clouddn.com/markdown-e750ff0587f1c1b4c69c531c69d6cbd0.png-960.jpg)
 
-##厂家后台
+# 厂家后台
 - 管理中心
 ![](http://o6qknsods.bkt.clouddn.com/markdown-d99e4b25d5f31df0f598b9a6c2ec7d37.png-960.jpg)
 - 一键搜单
@@ -33,7 +34,7 @@
 ![](http://o6qknsods.bkt.clouddn.com/markdown-486c68d58fab61edb1e70bf7876a67b1.png-960.jpg)
 
 
-##用户后台
+# 用户后台
 - 发起询价单
 ![](http://o6qknsods.bkt.clouddn.com/markdown-042a745f0b4ddce3ecef11ef87cf8fad.png-960.jpg)
 
@@ -43,7 +44,7 @@
 - 厂家信息预览
 ![](http://o6qknsods.bkt.clouddn.com/markdown-ae387538b88d479f4d1af0e35c8da353.png-960.jpg)
 
-##登录与注册
+# 登录与注册
 - 登录
 ![](http://o6qknsods.bkt.clouddn.com/markdown-68ab20a41e36208b84c7a8f15c8df68d.png-960.jpg)
 - 注册
